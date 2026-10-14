@@ -1,0 +1,310 @@
+/*#region VARIABLES */
+    /*Väripaletti ja typografia*/
+    :root {
+        --primary: #FFF000;
+        --dark: #2F2F2F;
+        --accent: #8c00ff;
+        --background: #1F1F1F;
+        --text: #222222;
+        --font-code: "IMB Plex Mono", monospace;
+    }
+/*#endregion VARIABLES */
+
+.production { /*Sisällön yhteiset asetukset*/
+    height: auto;
+    min-height: 1000px;
+    margin: 0;
+    background-color: var(--background);
+    * {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+/*#region HEADER */
+#mainHeader {
+    width: 100vw;
+}
+#mainLogoContainer {
+    display: flex;
+    align-items: center;
+    background: var(--primary);
+    height: 100px;
+    a {
+        margin: 14px;
+        margin-left: auto;
+        height: inherit;
+    }
+    h1 {
+        display: flex;
+        align-items: center;
+        height: 70px;
+        margin-block: 0;
+        margin-left: 16px;
+        font-family: "Euphoria Script";
+        font-weight: 400;
+        font-size: 60px;
+        color: var(--text);
+        border-radius: 50px;
+        padding-inline: 16px;
+    }
+    img {
+        height: inherit;
+    }
+}
+/*#endregion HEADER */
+
+
+/*#region HERO*/
+.heroOuterContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    cursor: default;
+}
+
+.heroInnerContainer {
+    display: flex;
+    flex-direction: column;
+    min-width: max-content;
+    .namePart {
+        display: flex;
+        margin: 0;
+        padding: 4px;
+        border-inline: 2.4vw solid var(--primary);
+        color: white;
+        font-family: "Roboto Condensed", sans-serif;
+        font-size: clamp(8rem, 17vw, 12rem);
+        line-height: 0.75;
+    }
+}
+
+#firstName {
+    font-weight: 100;
+    letter-spacing: -0.08em;
+    animation: firstNameAnimation 3.6s cubic-bezier(.22,1,.36,1) forwards;
+    transform-origin: bottom left;
+}
+@keyframes firstNameAnimation {
+    0% {
+        opacity: 0;
+        transform: skew(0deg);
+        border-inline: none;
+    }
+    20% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    60% {
+        transform:skew(0deg);
+    }
+    90% {
+        transform:skew(-10deg);
+        border-inline: none;
+    }
+    100% {
+        opacity: 1;
+        transform:skew(-10deg);
+        border-inline: 2.4vw solid var(--primary);
+    }
+}
+
+#middleName {
+    margin-left: auto;
+    margin-right: 5%;
+    animation: middleNameAnimation 0.5s 2.8s ease-in-out forwards;
+    opacity: 0;
+}
+@keyframes middleNameAnimation {
+    0% {
+        opacity: 0;
+        color: white;
+        font-weight: 100;
+    }
+    50% {
+        color: var(--primary);
+        opacity: 0.75;
+        font-weight: 800;
+    }
+    100% {
+        opacity: 1;
+        color: var(--primary);
+        font-weight: 450;
+    }
+}
+
+#lastName {
+    margin-top: -1px;
+    border-right: calc(2.4vw - 1px) solid var(--primary);
+    border-radius: 2px 0 0 0;
+    color: #1F1F1F;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    opacity: 0;
+    animation: lastNameAnimation 1.8s 1.0s forwards;
+}
+@keyframes lastNameAnimation {
+    0% {
+        opacity: 0;
+        background-color: transparent;
+        filter: brightness(.1);
+        text-shadow: none;
+    }
+    1%{
+        opacity: 0.5;
+    }
+    2% {
+        opacity: 1;
+        background-color: var(--primary);
+        filter: brightness(3);
+        text-shadow:
+            0 0 12px rgba(255,240,0,1),
+            0 0 32px rgba(255,240,0,.75);
+    }
+    3% {
+        opacity: 0.5;
+    }
+    5% {
+        opacity: 0;
+        background-color: transparent;
+        filter: brightness(.1);
+        text-shadow: none;
+    }
+    22% {
+        opacity: 0;
+        background-color: transparent;
+        filter: brightness(.1);
+        text-shadow: none;
+    }
+    25% {
+        opacity: .45;
+        background-color: var(--primary);
+        filter: brightness(1.3);
+    }
+    28% {
+        opacity: 1;
+        filter: brightness(2.8);
+        text-shadow:
+            0 0 12px rgba(255,240,0,.95),
+            0 0 30px rgba(255,240,0,.65);
+    }
+    31% {
+        opacity: .06;
+        filter: brightness(.1);
+        text-shadow: none;
+    }
+    36% {
+        opacity: .8;
+        filter: brightness(1.8);
+    }
+    39% {
+        opacity: .12;
+        filter: brightness(.2);
+        text-shadow: none;
+    }
+    44% {
+        opacity: 1;
+        filter: brightness(2.5);
+        text-shadow:
+            0 0 12px rgba(255,240,0,.9),
+            0 0 30px rgba(255,240,0,.6);
+    }
+    48% {
+        opacity: .28;
+        filter: brightness(.45);
+        text-shadow: none;
+    }
+    54% {
+        opacity: 1;
+        filter: brightness(2.1);
+        text-shadow:
+            0 0 10px rgba(255,240,0,.8),
+            0 0 24px rgba(255,240,0,.45);
+    }
+    59% {
+        opacity: .55;
+        filter: brightness(.75);
+        text-shadow: none;
+    }
+    65% {
+        opacity: 1;
+        filter: brightness(1.7);
+        text-shadow:
+            0 0 9px rgba(255,240,0,.7),
+            0 0 20px rgba(255,240,0,.35);
+    }
+    72% {
+        opacity: .72;
+        filter: brightness(.85);
+        text-shadow: none;
+    }
+    80% {
+        opacity: 1;
+        filter: brightness(1.35);
+        text-shadow:
+            0 0 8px rgba(255,240,0,.55),
+            0 0 18px rgba(255,240,0,.25);
+    }
+    100% {
+        opacity: 1;
+        background-color: var(--primary);
+        filter: brightness(1);
+        text-shadow:
+            0 0 8px rgba(255,240,0,.35),
+            0 0 18px rgba(255,240,0,.15);
+    }
+}
+
+#heroSubText {
+    margin-top: 24px;
+    font-family: var(--font-code);
+    font-size: clamp(1.1rem, 2vw, 1.8rem);
+    color: #DDD;
+}
+
+.typedText {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    animation: typing 1.5s steps(20, end) 4.0s forwards;
+}
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 20ch;
+    }
+}
+
+.cursor {
+    display: inline-block;
+    width: 2px;
+    height: 0.9em;
+    margin-left: 0;
+    translate: -10px -3px;
+    background-color: var(--primary);
+    opacity: 0;
+    animation: blink 0.9s 2.8s infinite;
+}
+@keyframes blink {
+    0%, 49% {
+        opacity: 1;
+    }
+    50%, 100% {
+        opacity: 0;
+    }
+}
+/*#endregion HERO */
+
+
+/*#region FOOTER */
+#footerMain {
+    background-color: var(--primary);
+}
+
+/*#endregion FOOTER*/
