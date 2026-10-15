@@ -90,7 +90,6 @@
     0% {
         opacity: 0;
         transform: skew(0deg);
-        border-inline: none;
     }
     20% {
         opacity: 0;
@@ -103,12 +102,10 @@
     }
     90% {
         transform:skew(-10deg);
-        border-inline: none;
     }
     100% {
         opacity: 1;
         transform:skew(-10deg);
-        border-inline: 2.4vw solid var(--primary);
     }
 }
 
