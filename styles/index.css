@@ -296,6 +296,12 @@
         opacity: 0;
     }
 }
+
+@media (max-width: 600px) {
+    .heroInnerContainer .namePart {
+        font-size: clamp(3rem, 14vw, 6rem);
+    }
+}
 /*#endregion HERO */
 
 
