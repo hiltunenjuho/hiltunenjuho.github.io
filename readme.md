@@ -1,3 +1,1 @@
-This is a multi-purpose repository. Right now, the main focus is learning new and fine-tuning existing skills in general.
-
-Hence Sandbox
+The repo for my personal website - CV, portfolio, and a project on its own.
