@@ -353,7 +353,7 @@ body.production { /*Sisällön yhteiset asetukset*/
     overflow: hidden;
     white-space: nowrap;
     width: 0;
-    animation: typing 1.5s steps(20, end) 4.0s forwards;
+    animation: typing 1.5s steps(20, end) 2.5s forwards;
 }
 @keyframes typing {
     from {
@@ -371,7 +371,7 @@ body.production { /*Sisällön yhteiset asetukset*/
     translate: -10px -3px;
     background-color: var(--primary);
     opacity: 0;
-    animation: blink 1s 2.8s infinite;
+    animation: blink 1s 1.8s infinite;
 }
 @keyframes blink {
     0%, 49% {
