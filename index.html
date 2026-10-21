@@ -20,30 +20,55 @@
 <body class="production">
     <header id="mainHeader">
             <img id="logo" src="assets\images\logo_transparent_corners.png" alt="">
-            <ul class="tabset" id="headerTabset">
-            </ul>
+            <div id="headerTabsetContainer">
+                <nav class="tabset" id="headerTabset" aria-label="Main navigation">
+                    <button class="tabButton active" id="homeTabButton" data-page="homeContent" type="button">
+                        home
+                    </button>
+                    <button class="tabButton" id="aboutTabButton" data-page="aboutContent" type="button">
+                        about
+                    </button>
+                    <button class="tabButton" id="projectsTabButton" data-page="projectsContent" type="button">
+                        projects
+                    </button>
+                    <button class="tabButton" id="contactTabButton" data-page="contactContent" type="button">
+                        contact
+                    </button>
+                </nav>
+            </div>
     </header>
-    <body>
-        <div class="heroOuterContainer" id="nameElement">
-            <div class="heroInnerContainer" id="nameContainer">
-                <h1 class="namePart" id="firstName">
-                    JUHO 
-                    <span id="middleName">
-                        M.
-                    </span>
-                </h1>
-                <h1 class="namePart" id="lastName">
-                    HILTUNEN
-                </h1>
-                <div id="heroSubText">
-                    <span class="typedText">// i build software.</span>
-                    <span class="cursor"></span>
-                </div>
+    <main class="pageContent active" id="homeContent">
+    </main>
+    <main class="pageContent" id="aboutContent">
+        <div>
+        </div>
+    </main>
+    <main class="pageContent" id="projectsContent">
+    </main>
+    <main class="pageContent" id="contactContent">
+    </main>
+    <div class="heroOuterContainer" id="nameElement">
+        <div class="heroInnerContainer" id="nameContainer">
+            <h1 class="namePart" id="firstName">
+                JUHO 
+                <span id="middleName">
+                    M.
+                </span>
+            </h1>
+            <h1 class="namePart" id="lastName">
+                HILTUNEN
+            </h1>
+            <div id="heroSubText">
+                <span class="typedText">// i build <span id="effectText">software</span>.</span>
+                <span class="cursor"></span>
             </div>
         </div>
-</body>
+    </div>
     <footer>
-        <div id="footerMain"></div>
+        <div id="footerMain">
+            <div id="footerLeft"></div>
+            <div id="footerRight"></div>
+        </div>
     </footer>
 </body>
 </html>
