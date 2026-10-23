@@ -15,24 +15,41 @@
     --tabButtonBorderRadius: 12px;
 }
 /*#endregion VARIABLES */
+
+/*#region DOCUMENT*/
 html {
     overflow-x: hidden;
+    background-color: var(--background);
 }
-body.production { /*Sisällön yhteiset asetukset*/
-    min-height: 1000px;
+body, main.production {
+    min-height: 2000px;
     margin: 0;
+    background: var(--primary);
+}
+
+main.production {
     background-color: var(--background);
 }
 
+#pageStage {
+    box-sizing: border-box;
+    position: relative;
+    transition: height 0.5s ease;
+    padding-block: 3em;
+}
+
 .pageContent {
+    position: absolute;
+    inset: 3em 0 auto;
     opacity: 0;
     transform: translateX(100%);
     transition: transform 0.5s ease, opacity 0.5s ease;
 }
 .pageContent.active {
-    transform: translateX(0);
+    transform: translateX(0%);
     opacity: 1;
 }
+/*#endregion DOCUMENT*/
 
 /*#region HEADER */
 #mainHeader {
@@ -138,7 +155,6 @@ body.production { /*Sisällön yhteiset asetukset*/
 }
 /*#endregion HEADER */
 
-
 /*#region HERO*/
 .heroOuterContainer {
     display: flex;
@@ -151,7 +167,6 @@ body.production { /*Sisällön yhteiset asetukset*/
     display: flex;
     flex-direction: column;
     min-width: max-content;
-    margin-top: 5%;
     .namePart {
         display: flex;
         margin: 0;
@@ -364,6 +379,23 @@ body.production { /*Sisällön yhteiset asetukset*/
     }
 }
 
+#purpleTypedText:hover {
+    color: var(--accent);
+    cursor: pointer;
+}
+#yellowTypedText {
+    color: #DDD;
+    animation: yellowTextSnap 0s 3.925s forwards;
+}
+@keyframes yellowTextSnap {
+    from {
+        color: #DDD;
+    }
+    to {
+        color: var(--primary);
+    }
+}
+
 .cursor {
     display: inline-block;
     width: 0.2%;
@@ -390,6 +422,28 @@ body.production { /*Sisällön yhteiset asetukset*/
 /*#endregion HERO*/
 
 /*#region ABOUT*/
+#aboutContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: white;
+    font-family: var(--font-code);
+    font-size: var(--codeTextFontSize);
+}
+#aboutContainer {
+    width: var(--headerTabsetWidth);
+    border-radius: 22px;
+    box-shadow: 0 0 1em black;
+    padding-inline: 1.3em;
+}
+
+.purpleText {
+    color: var(--accent);
+}
+.yellowText{
+    color: var(--primary);
+}
 
 /*#endregion ABOUT*/
 

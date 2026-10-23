@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="js/app.js" defer></script>
 </head>
-<body class="production">
+<body>
     <header id="mainHeader">
             <img id="logo" src="assets\images\logo_transparent_corners.png" alt="">
             <div id="headerTabsetContainer">
@@ -37,33 +37,47 @@
                 </nav>
             </div>
     </header>
-    <main class="pageContent active" id="homeContent">
-    </main>
-    <main class="pageContent" id="aboutContent">
-        <div>
+    <main class="production">
+        <div id="pageStage">
+            <section class="pageContent active" id="homeContent">
+            </section>
+            <section class="pageContent" id="aboutContent">
+                <div id="aboutContainer">
+                    <h2 id="aboutHeader">
+                        <span class="yellowText">for me</span>,
+                    </h2>
+                    <p id="aboutP">
+                        <span class="purpleText">software development</span> is a mix of problem-solving, creativity and <span class="yellowText">continuous learning</span>.<br>
+                        <br>
+                        whether i'm <span class="purpleText">developing</span> a web app, <span class="purpleText">exploring</span> a new technology or <span class="purpleText">improving</span> an existing product,<br>
+                        <br>
+                        i enjoy the whole process of turning <span class="yellowText">ideas</span> into working <span class="yellowText">solutions</span>.
+                    </p>
+                </div>
+            </section>
+            <section class="pageContent" id="projectsContent">
+            </section>
+            <section class="pageContent" id="contactContent">
+            </section>
         </div>
-    </main>
-    <main class="pageContent" id="projectsContent">
-    </main>
-    <main class="pageContent" id="contactContent">
-    </main>
-    <div class="heroOuterContainer" id="nameElement">
-        <div class="heroInnerContainer" id="nameContainer">
-            <h1 class="namePart" id="firstName">
-                JUHO 
-                <span id="middleName">
-                    M.
-                </span>
-            </h1>
-            <h1 class="namePart" id="lastName">
-                HILTUNEN
-            </h1>
-            <div id="heroSubText">
-                <span class="typedText">// i build <span id="effectText">software</span>.</span>
-                <span class="cursor"></span>
+        <div class="heroOuterContainer" id="heroElement">
+            <div class="heroInnerContainer" id="heroContainer">
+                <h1 class="namePart" id="firstName">
+                    JUHO 
+                    <span id="middleName">
+                        M.
+                    </span>
+                </h1>
+                <h1 class="namePart" id="lastName">
+                    HILTUNEN
+                </h1>
+                <div id="heroSubText">
+                    <span class="typedText" id="typedText">// i <span id="purpleTypedText" onclick="document.getElementById(`projectsTabButton`).click(); return false;">build</span> <span id="yellowTypedText">software</span>.</span>
+                    <span class="cursor"></span>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
     <footer>
         <div id="footerMain">
             <div id="footerLeft"></div>
