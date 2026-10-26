@@ -13,6 +13,7 @@
     <link href='https://fonts.googleapis.com/css?family=Euphoria Script' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Clarity+City:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="js/app.js" defer></script>
@@ -22,43 +23,171 @@
             <img id="logo" src="assets\images\logo_transparent_corners.png" alt="">
             <div id="headerTabsetContainer">
                 <nav class="tabset" id="headerTabset" aria-label="Main navigation">
-                    <button class="tabButton active" id="homeTabButton" data-page="homeContent" type="button">
-                        home
+                    <button class="tabButton active" id="homeTabButton" data-page="homeContent" type="button" aria-label="Home">
+                        <span class="material-symbols-outlined" aria-hidden="true">home</span>
+                        <span class="tabLabel" aria-hidden="true">home</span>
                     </button>
-                    <button class="tabButton" id="aboutTabButton" data-page="aboutContent" type="button">
-                        about
+                    <button class="tabButton" id="aboutTabButton" data-page="aboutContent" type="button" aria-label="About">
+                        <span class="material-symbols-outlined" aria-hidden="true">info</span>
+                        <span class="tabLabel" aria-hidden="true">about</span>
                     </button>
-                    <button class="tabButton" id="projectsTabButton" data-page="projectsContent" type="button">
-                        projects
+                    <button class="tabButton" id="projectsTabButton" data-page="projectsContent" type="button" aria-label="Projects">
+                        <span class="material-symbols-outlined" aria-hidden="true">folder_open</span>
+                        <span class="tabLabel" aria-hidden="true">projects</span>
                     </button>
-                    <button class="tabButton" id="contactTabButton" data-page="contactContent" type="button">
-                        contact
+                    <button class="tabButton" id="contactTabButton" data-page="contactContent" type="button" aria-label="Contact">
+                        <span class="material-symbols-outlined" aria-hidden="true">alternate_email</span>
+                        <span class="tabLabel" aria-hidden="true">contact</span>
                     </button>
                 </nav>
             </div>
     </header>
     <main class="production">
         <div id="pageStage">
-            <section class="pageContent active" id="homeContent">
-            </section>
-            <section class="pageContent" id="aboutContent">
-                <div id="aboutContainer">
-                    <h2 id="aboutHeader">
-                        <span class="yellowText">for me</span>,
-                    </h2>
-                    <p id="aboutP">
-                        <span class="purpleText">software development</span> is a mix of problem-solving, creativity and <span class="yellowText">continuous learning</span>.<br>
-                        <br>
-                        whether i'm <span class="purpleText">developing</span> a web app, <span class="purpleText">exploring</span> a new technology or <span class="purpleText">improving</span> an existing product,<br>
-                        <br>
-                        i enjoy the whole process of turning <span class="yellowText">ideas</span> into working <span class="yellowText">solutions</span>.
-                    </p>
-                </div>
-            </section>
-            <section class="pageContent" id="projectsContent">
-            </section>
-            <section class="pageContent" id="contactContent">
-            </section>
+            <div id="pageTrack">
+                <section class="pageContent active" id="homeContent">
+                </section>
+                <section class="pageContent" id="aboutContent">
+                    <h1 class="sectionTitle">// A little about <span class="yellowText">me</span></h1>
+                    <div class="aboutCarousel cardCarousel" id="aboutCarousel" role="region" aria-roledescription="carousel" aria-label="About Juho">
+                        <div class="aboutCardControls cardCarouselControls" role="group" aria-label="About card navigation">
+                            <button class="aboutCardButton cardCarouselButton" id="previousAboutCard" type="button" aria-label="Previous About card" aria-controls="aboutCardTrack">
+                                <span class="material-symbols-outlined" aria-hidden="true">chevron_backward</span>
+                            </button>
+                            <span class="aboutCardCounter cardCarouselCounter" id="aboutCardCounter" aria-live="polite">1 / 4</span>
+                            <button class="aboutCardButton cardCarouselButton" id="nextAboutCard" type="button" aria-label="Next About card" aria-controls="aboutCardTrack">
+                                <span class="material-symbols-outlined" aria-hidden="true">chevron_forward</span>
+                            </button>
+                        </div>
+                        <div class="aboutCardViewport cardCarouselViewport" id="aboutCardViewport" tabindex="0" aria-label="About cards. Use the arrow keys or swipe to navigate.">
+                            <div class="aboutCardTrack cardCarouselTrack" id="aboutCardTrack">
+                                <article class="sectionContainer aboutCard cardCarouselCard" aria-roledescription="slide">
+                                    <p class="aboutCardEyebrow">01 / MY PATH</p>
+                                    <h2 class="aboutCardTitle">
+                                        A <span class="yellowText">non-traditional path</span> into software
+                                    </h2>
+                                    <p>
+                                        My route into software development has been <span class="yellowText">hands-on</span> rather than conventional. Earlier programming studies and personal projects gave me a foundation, but the turning point came when I started noticing repetitive work, disconnected systems, and frustrating interfaces in <span class="yellowText">real business workflows</span>.
+                                        <br><br>
+                                        I learned by applying what I knew to real problems, building JavaScript tools, automations, and integrations instead of stopping at exercises. Seeing software make everyday work simpler turned a long-standing interest into a <span class="yellowText">clear career goal</span>.
+                                    </p>
+                                </article>
+                                <article class="sectionContainer aboutCard cardCarouselCard" aria-roledescription="slide">
+                                    <p class="aboutCardEyebrow">02 / WHAT DRIVES ME</p>
+                                    <h2 class="aboutCardTitle">
+                                        <span class="yellowText">For me</span>,
+                                    </h2>
+                                    <p>
+                                        software development is a mix of problem-solving, creativity and <span class="yellowText">continuous learning</span>.
+                                        <br>
+                                        <br>
+                                        Whether I'm developing a web app, exploring a new technology or improving an existing product,
+                                        <br>
+                                        <br>
+                                        I enjoy the whole process of turning <span class="yellowText">ideas</span> into working <span class="yellowText">solutions</span>.
+                                    </p>
+                                </article>
+                                <article class="sectionContainer aboutCard cardCarouselCard" aria-roledescription="slide">
+                                    <p class="aboutCardEyebrow">03 / HOW I WORK</p>
+                                    <h2 class="aboutCardTitle">
+                                        Start with the <span class="yellowText">real problem</span>
+                                    </h2>
+                                    <p>
+                                        I look for the point where a workflow loses time, information, or clarity. Then I learn how the work is actually done and build a <span class="yellowText">solution</span> around the <span class="yellowText">people</span> who use it.
+                                        <br><br>
+                                        My projects have included tools that bring useful information together, reduce repetitive steps, and make <span class="yellowText">complex workflows easier</span> to navigate. <span class="yellowText">I care</span> about the <span class="yellowText">difference</span> a solution makes, not just the <span class="yellowText">technologies</span> behind it.
+                                    </p>
+                                </article>
+                                <article class="sectionContainer aboutCard cardCarouselCard" aria-roledescription="slide">
+                                    <p class="aboutCardEyebrow">04 / WHAT'S NEXT</p>
+                                    <h2 class="aboutCardTitle">
+                                        Building toward <span class="yellowText">what's next</span>
+                                    </h2>
+                                    <p>
+                                        Right now, I’m working toward a full-time role in software development, bringing a <span class="yellowText">practical understanding</span> of business workflows and experience building tools for <span class="yellowText">real needs</span>.
+                                        <br><br>
+                                        I’m continuing to deepen my skills, while exploring how <span class="yellowText">AI</span> can make useful systems work even <span class="yellowText">better</span>.
+                                        <br>
+                                        <br>
+                                        My focus stays the same: understand the problem, build thoughtfully, and <span class="yellowText">keep learning</span>.
+                                    </p>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="pageContent" id="projectsContent">
+                    <h1 class="sectionTitle">// Selected <span class="yellowText">projects</span></h1>
+                    <div class="projectsCarousel cardCarousel" id="projectsCarousel" role="region" aria-roledescription="carousel" aria-label="Projects">
+                        <div class="aboutCardControls cardCarouselControls" role="group" aria-label="Project card navigation">
+                            <button class="aboutCardButton cardCarouselButton" type="button" aria-label="Previous project card" aria-controls="projectsCardTrack">
+                                <span class="material-symbols-outlined" aria-hidden="true">chevron_backward</span>
+                            </button>
+                            <span class="aboutCardCounter cardCarouselCounter" aria-live="polite">1 / 2</span>
+                            <button class="aboutCardButton cardCarouselButton" type="button" aria-label="Next project card" aria-controls="projectsCardTrack">
+                                <span class="material-symbols-outlined" aria-hidden="true">chevron_forward</span>
+                            </button>
+                        </div>
+                        <div class="aboutCardViewport cardCarouselViewport" tabindex="0" aria-label="Project cards. Use the arrow keys or swipe to navigate.">
+                            <div class="aboutCardTrack cardCarouselTrack" id="projectsCardTrack">
+                                <article class="sectionContainer aboutCard cardCarouselCard" aria-roledescription="slide">
+                                    <p class="aboutCardEyebrow">01 / FEATURED WORK</p>
+                                    <h2 class="aboutCardTitle">Projects <span class="yellowText">coming soon</span></h2>
+                                    <p>
+                                        This is where selected projects will be introduced, with a short explanation, the approach, and live demos.
+                                        <br>
+                                        <br>
+                                        My largest projects so far - unfortunately - cannot be publicly displayed, as they are built on internal systems of a company, and use the company’s data.
+                                        <br>
+                                        <br>
+                                        Here I will start introducing other selected projects, proofs of concept and apps I’ve built.
+                                    </p>
+                                </article>
+                                <article class="sectionContainer aboutCard cardCarouselCard" aria-roledescription="slide">
+                                    <p class="aboutCardEyebrow">02 / IN PROGRESS</p>
+                                    <h2 class="aboutCardTitle">More work to share</h2>
+                                    <p>
+                                        New projects and experiments will be added here as they are ready to share.
+                                    </p>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="pageContent" id="contactContent">
+                    <h1 class="sectionTitle">// Get in <span class="yellowText">touch</span></h1>
+                    <div class="sectionContainer contactCard">
+                        <p class="aboutCardEyebrow">CONTACT / SAY HELLO</p>
+                        <h2 class="aboutCardTitle">Let's start a <span class="yellowText">conversation</span></h2>
+                        <div class="contactLinks" aria-label="Contact links">
+                            <a class="contactLink" href="mailto:juho.m.hiltunen@gmail.com">
+                                <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+                                <span>Email <small>juho.m.hiltunen@gmail.com</small></span>
+                            </a>
+                            <a class="contactLink" href="https://www.linkedin.com/in/hiltunenjuho/" target="_blank" rel="noopener noreferrer" aria-label="Open Juho's LinkedIn profile in a new tab">
+                                <span class="material-symbols-outlined" aria-hidden="true">link</span>
+                                <span>LinkedIn <small>linkedin.com/in/hiltunenjuho</small></span>
+                            </a>
+                            <a class="contactLink" href="https://github.com/hiltunenjuho" target="_blank" rel="noopener noreferrer" aria-label="Open Juho's GitHub profile in a new tab">
+                                <span class="material-symbols-outlined" aria-hidden="true">code</span>
+                                <span>GitHub <small>github.com/hiltunenjuho</small></span>
+                            </a>
+                        </div>
+                        <form class="contactForm" id="contactForm" aria-describedby="contactFormNote">
+                            <p class="contactFormNote" id="contactFormNote">
+                                Send a note using the form. Your email app will open with the message ready to review and send.
+                            </p>
+                            <label for="contactName">Your name</label>
+                            <input id="contactName" name="name" type="text" autocomplete="name" required>
+                            <label for="contactEmail">Your email</label>
+                            <input id="contactEmail" name="email" type="email" autocomplete="email" required>
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" name="message" rows="5" required></textarea>
+                            <button class="contactSubmit" type="submit">Prepare email</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
         </div>
         <div class="heroOuterContainer" id="heroElement">
             <div class="heroInnerContainer" id="heroContainer">
@@ -72,16 +201,29 @@
                     HILTUNEN
                 </h1>
                 <div id="heroSubText">
-                    <span class="typedText" id="typedText">// i <span id="purpleTypedText" onclick="document.getElementById(`projectsTabButton`).click(); return false;">build</span> <span id="yellowTypedText">software</span>.</span>
-                    <span class="cursor"></span>
+                    <span class="typedText" id="typedText">// i <span id="purpleTypedText" role="button" tabindex="0">build</span> <span id="yellowTypedText">software</span>.</span>
                 </div>
             </div>
         </div>
     </main>
-    <footer>
+    <footer id="siteFooter">
         <div id="footerMain">
-            <div id="footerLeft"></div>
-            <div id="footerRight"></div>
+            <div id="footerLeft">
+                <p class="footerName">JUHO M. HILTUNEN</p>
+                <p class="footerCopyright">
+                    © <span id="currentYear"></span> Juho M. Hiltunen. All rights reserved for personal content and branding.
+                </p>
+                <a class="footerLicense" href="LICENSE">Website code licensed under MIT</a>
+            </div>
+            <div id="footerRight">
+                <p class="footerHeading">GET IN TOUCH</p>
+                <div class="footerLinks">
+                    <a href="mailto:juho.m.hiltunen@gmail.com">Email</a>
+                    <a href="https://www.linkedin.com/in/hiltunenjuho/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://github.com/hiltunenjuho" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
+                <a class="footerBackToTop" href="#mainHeader">Back to top ↑</a>
+            </div>
         </div>
     </footer>
 </body>
