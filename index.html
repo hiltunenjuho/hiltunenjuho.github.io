@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Clarity+City:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Clarity+City:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="js/app.js" defer></script>
 </head>
@@ -25,19 +25,15 @@
                 <nav class="tabset" id="headerTabset" aria-label="Main navigation">
                     <button class="tabButton active" id="homeTabButton" data-page="homeContent" type="button" aria-label="Home">
                         <span class="material-symbols-outlined" aria-hidden="true">home</span>
-                        <span class="tabLabel" aria-hidden="true">home</span>
                     </button>
                     <button class="tabButton" id="aboutTabButton" data-page="aboutContent" type="button" aria-label="About">
                         <span class="material-symbols-outlined" aria-hidden="true">info</span>
-                        <span class="tabLabel" aria-hidden="true">about</span>
                     </button>
                     <button class="tabButton" id="projectsTabButton" data-page="projectsContent" type="button" aria-label="Projects">
                         <span class="material-symbols-outlined" aria-hidden="true">folder_open</span>
-                        <span class="tabLabel" aria-hidden="true">projects</span>
                     </button>
                     <button class="tabButton" id="contactTabButton" data-page="contactContent" type="button" aria-label="Contact">
                         <span class="material-symbols-outlined" aria-hidden="true">alternate_email</span>
-                        <span class="tabLabel" aria-hidden="true">contact</span>
                     </button>
                 </nav>
             </div>
@@ -48,7 +44,7 @@
                 <section class="pageContent active" id="homeContent">
                 </section>
                 <section class="pageContent" id="aboutContent">
-                    <h1 class="sectionTitle">// A little about <span class="yellowText">me</span></h1>
+                    <h1 class="sectionTitle">// About <span class="yellowText">me</span></h1>
                     <div class="aboutCarousel cardCarousel" id="aboutCarousel" role="region" aria-roledescription="carousel" aria-label="About Juho">
                         <div class="aboutCardControls cardCarouselControls" role="group" aria-label="About card navigation">
                             <button class="aboutCardButton cardCarouselButton" id="previousAboutCard" type="button" aria-label="Previous About card" aria-controls="aboutCardTrack">
@@ -75,7 +71,7 @@
                                 <article class="sectionContainer aboutCard cardCarouselCard" aria-roledescription="slide">
                                     <p class="aboutCardEyebrow">02 / WHAT DRIVES ME</p>
                                     <h2 class="aboutCardTitle">
-                                        <span class="yellowText">For me</span>,
+                                        For <span class="yellowText">me</span>,
                                     </h2>
                                     <p>
                                         software development is a mix of problem-solving, creativity and <span class="yellowText">continuous learning</span>.
@@ -201,29 +197,28 @@
                     HILTUNEN
                 </h1>
                 <div id="heroSubText">
-                    <span class="typedText" id="typedText">// i <span id="purpleTypedText" role="button" tabindex="0">build</span> <span id="yellowTypedText">software</span>.</span>
+                    <span class="typedTextReveal"><span class="typedText" id="typedText">// i <span id="purpleTypedText" role="button" tabindex="0">build</span> <span id="yellowTypedText">software</span>.</span></span>
                 </div>
             </div>
         </div>
     </main>
     <footer id="siteFooter">
         <div id="footerMain">
-            <div id="footerLeft">
-                <p class="footerName">JUHO M. HILTUNEN</p>
-                <p class="footerCopyright">
-                    © <span id="currentYear"></span> Juho M. Hiltunen. All rights reserved for personal content and branding.
-                </p>
-                <a class="footerLicense" href="LICENSE">Website code licensed under MIT</a>
-            </div>
-            <div id="footerRight">
-                <p class="footerHeading">GET IN TOUCH</p>
+            <div class="footerSection" id="footerRight">
+                <p class="footerHeading">CONTACT INFO</p>
                 <div class="footerLinks">
                     <a href="mailto:juho.m.hiltunen@gmail.com">Email</a>
                     <a href="https://www.linkedin.com/in/hiltunenjuho/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     <a href="https://github.com/hiltunenjuho" target="_blank" rel="noopener noreferrer">GitHub</a>
                 </div>
-                <a class="footerBackToTop" href="#mainHeader">Back to top ↑</a>
             </div>
+            <div class="footerSection" id="footerLeft">
+                <p class="footerCopyright">
+                    © <span id="currentYear"></span> Juho M. Hiltunen. All rights reserved for personal content and branding.
+                </p>
+                <a class="footerLicense" href="LICENSE">Website code licensed under MIT</a>
+            </div>
+            <a class="footerBackToTop" href="#mainHeader">Back to top ↑</a>
         </div>
     </footer>
 </body>
