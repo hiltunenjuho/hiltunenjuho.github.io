@@ -828,7 +828,7 @@ a.contactLink {
     #headerTabsetContainer {
         justify-content: flex-end;
         padding-left: calc(var(--logoSize) + 2 * var(--logoMarginLeft));
-        padding-right: calc(var(--logoSize) + 2 * var(--logoMarginLeft));
+        padding-right: calc((var(--logoSize) + 2 * var(--logoMarginLeft)) * 0.2);
     }
     
     #headerTabset {
