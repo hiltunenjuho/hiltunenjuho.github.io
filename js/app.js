@@ -192,30 +192,10 @@ function createCardCarousel(root) {
 
     updateControls();
     updateHeight();
-
-    return { updateHeight: updateHeight };
 }
 
 // Initialize the About and Projects carousels using the same behavior.
-const cardCarousels = Array.from(
-    document.querySelectorAll(".cardCarousel")
-).map(createCardCarousel);
-
-function updateCardCarouselHeights() {
-    cardCarousels.forEach(function(carousel) {
-        carousel.updateHeight();
-    });
-}
-
-// Recalculate layout-dependent card heights after viewport or font changes.
-window.addEventListener("resize", function() {
-    updateLayout();
-    updateCardCarouselHeights();
-});
-document.fonts.ready.then(function() {
-    updateLayout();
-    updateCardCarouselHeights();
-});
+document.querySelectorAll(".cardCarousel").forEach(createCardCarousel);
 
 // Prepare a mailto link from the validated form fields; the visitor sends it.
 document.getElementById("contactForm").addEventListener("submit", function(event) {
