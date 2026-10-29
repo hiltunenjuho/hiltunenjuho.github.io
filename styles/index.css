@@ -237,7 +237,7 @@ main.production {
         font-weight: 250;
     }
     90% {
-        transform:skew(-10deg);;
+        transform:skew(-10deg);
     }
     100% {
         opacity: 1;
@@ -750,10 +750,9 @@ a.contactLink {
     }
 }
 
-.yellowText{
+.yellowText {
     color: var(--primary);
 }
-
 /*#endregion STAGE*/
 
 /*#region FOOTER*/
@@ -802,10 +801,6 @@ a.contactLink {
     color: #3F3F3F;
     text-decoration-color: var(--background);
     text-underline-offset: .2em;
-}
-
-.footerBackToTop {
-
 }
 
 .footerLinks {
