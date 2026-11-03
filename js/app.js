@@ -1,6 +1,8 @@
 // Cache the elements used by the layout and page-navigation code.
 const elements = {
     lastName: document.getElementById("lastName"),
+    hero: document.getElementById("heroElement"),
+    heroInner: document.getElementById("heroContainer"),
     pageStage: document.getElementById("pageStage"),
     pageTrack: document.getElementById("pageTrack"),
 };
@@ -29,20 +31,41 @@ updateLayout();
 // Collect the main page tabs and panels, then size the sliding page track.
 const tabButtons = document.querySelectorAll(".tabButton");
 const pageContent = document.querySelectorAll(".pageContent");
+const homeHighlights = document.getElementById("homeHighlights");
 const pageWidthPercent = 100 / pageContent.length;
+const homeHighlightItems = homeHighlights.querySelectorAll(".homeHighlightItem");
+let isHomeHighlightsExiting = false;
+const completedHomeHighlightExits = new Set();
+let pageStageAnimationFrame = null;
+let heroLayoutTimeout = null;
+let heroStageTransitionHandler = null;
+let pendingHomeHighlightsReveal = false;
+const homeHighlightObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+        if (!entry.isIntersecting) {
+            return;
+        }
+
+        entry.target.classList.add("is-in-view");
+        entry.target.inert = false;
+        homeHighlightObserver.unobserve(entry.target);
+    });
+}, {
+    threshold: 0.16,
+    rootMargin: "0px 0px -8% 0px",
+});
 
 elements.pageTrack.style.width = pageContent.length * 100 + "%";
 pageContent.forEach(function(page) {
     page.style.flexBasis = pageWidthPercent + "%";
 });
+homeHighlightItems.forEach(function(item) {
+    item.inert = true;
+    homeHighlightObserver.observe(item);
+});
 
 function getPageStageHeight(page) {
-    const stageStyle = getComputedStyle(elements.pageStage);
-    const verticalPadding =
-        parseFloat(stageStyle.paddingTop) + parseFloat(stageStyle.paddingBottom);
-
-    // Include the stage's vertical padding so its explicit height fits the panel.
-    return page.getBoundingClientRect().height + verticalPadding;
+    return page.getBoundingClientRect().height;
 }
 
 // Set up one independent carousel, including its controls and swipe handling.
@@ -232,12 +255,113 @@ projectsHeroLink.addEventListener("keydown", function(event) {
 // Show the current year in the footer without requiring a manual yearly edit.
 document.getElementById("currentYear").textContent = new Date().getFullYear();
 
+// Keep the Home-only highlights out of view and the tab sequence when leaving Home.
+function setHomeHighlightsVisible(isVisible) {
+    if (isVisible) {
+        isHomeHighlightsExiting = false;
+        completedHomeHighlightExits.clear();
+        homeHighlights.hidden = false;
+        homeHighlights.inert = false;
+        homeHighlights.style.top = "";
+        homeHighlights.removeAttribute("aria-hidden");
+        homeHighlights.classList.remove("is-exiting");
+        homeHighlights.classList.add("is-visible");
+        homeHighlightItems.forEach(function(item) {
+            if (!item.classList.contains("is-in-view")) {
+                item.inert = true;
+                homeHighlightObserver.observe(item);
+            }
+        });
+        return;
+    }
+
+    if (homeHighlights.hidden) {
+        return;
+    }
+
+    const mainBounds = homeHighlights.parentElement.getBoundingClientRect();
+    homeHighlights.style.top =
+        homeHighlights.getBoundingClientRect().top - mainBounds.top + "px";
+    homeHighlights.setAttribute("aria-hidden", "true");
+    homeHighlights.inert = true;
+    homeHighlights.classList.remove("is-visible");
+    homeHighlights.classList.add("is-exiting");
+    completedHomeHighlightExits.clear();
+    isHomeHighlightsExiting = true;
+    homeHighlightObserver.disconnect();
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        homeHighlights.hidden = true;
+        isHomeHighlightsExiting = false;
+    }
+}
+
+homeHighlights.addEventListener("animationend", function(event) {
+    if (
+        !isHomeHighlightsExiting ||
+        event.animationName !== "homeHighlightExit" ||
+        !event.target.matches(".homeHighlightItem")
+    ) {
+        return;
+    }
+
+    completedHomeHighlightExits.add(event.target);
+    if (completedHomeHighlightExits.size === homeHighlightItems.length) {
+        homeHighlights.hidden = true;
+        isHomeHighlightsExiting = false;
+    }
+});
+
+document.getElementById("scrollCue").addEventListener("click", function(event) {
+    event.preventDefault();
+    homeHighlights.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+            ? "auto"
+            : "smooth",
+        block: "start",
+    });
+});
+
+function cancelHeroLayoutRelease() {
+    if (heroLayoutTimeout !== null) {
+        clearTimeout(heroLayoutTimeout);
+        heroLayoutTimeout = null;
+    }
+
+    if (heroStageTransitionHandler !== null) {
+        elements.pageStage.removeEventListener("transitionend", heroStageTransitionHandler);
+        heroStageTransitionHandler = null;
+    }
+}
+
+function releaseHeroLayout() {
+    cancelHeroLayoutRelease();
+    elements.hero.style.removeProperty("height");
+    elements.hero.style.removeProperty("min-height");
+    elements.hero.style.removeProperty("flex");
+    elements.hero.style.removeProperty("justify-content");
+    elements.hero.style.removeProperty("transition");
+    elements.heroInner.style.removeProperty("transition");
+    elements.heroInner.style.removeProperty("transform");
+
+    if (pendingHomeHighlightsReveal) {
+        pendingHomeHighlightsReveal = false;
+        setHomeHighlightsVisible(true);
+    }
+}
+
 // Find and display the page marked active in the HTML when the site loads.
 const initialPage = document.querySelector(".pageContent.active");
 const initialIndex = Array.from(pageContent).indexOf(initialPage);
 elements.pageTrack.style.transform =
     "translateX(-" + initialIndex * pageWidthPercent + "%)";
-elements.pageStage.style.height = getPageStageHeight(initialPage) + "px";
+elements.pageStage.style.height =
+    initialPage.id === "homeContent" ? "0px" : getPageStageHeight(initialPage) + "px";
+document.querySelector("main.production").classList.toggle(
+    "home-view",
+    initialPage.id === "homeContent"
+);
+setHomeHighlightsVisible(initialPage.id === "homeContent");
 
 // Switch the active page, slide the track, and animate the stage to its height.
 function setActiveTab(clickedButton) {
@@ -247,8 +371,35 @@ function setActiveTab(clickedButton) {
 
     const pageId = clickedButton.dataset.page;
     const activePage = document.getElementById(pageId);
+    const previousPage = document.querySelector(".pageContent.active");
     const nextIndex = Array.from(tabButtons).indexOf(clickedButton);
+    const isHomePage = activePage.id === "homeContent";
+    const wasHomePage = previousPage.id === "homeContent";
+    const shouldPreserveHeroLayout = isHomePage || wasHomePage;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const shouldAnimateHero = shouldPreserveHeroLayout && !prefersReducedMotion;
+    const currentHeroRect = elements.hero.getBoundingClientRect();
+    const currentInnerRect = elements.heroInner.getBoundingClientRect();
+    const currentInnerOffset = currentInnerRect.top - currentHeroRect.top;
+    const heroHeight = currentHeroRect.height + "px";
+    let targetHeroHeight = null;
+    if (isHomePage || document.querySelector(".pageContent.active").id === "homeContent") {
+        window.scrollTo({ top: 0, behavior: "auto" });
+    }
+
+    if (shouldAnimateHero) {
+        cancelHeroLayoutRelease();
+        elements.hero.style.transition = "none";
+        elements.hero.style.height = heroHeight;
+        elements.hero.style.minHeight = heroHeight;
+        elements.hero.style.flex = "0 0 auto";
+        elements.hero.style.justifyContent = "flex-start";
+        elements.heroInner.style.transition = "none";
+        elements.heroInner.style.transform = "translateY(" + currentInnerOffset + "px)";
+    }
+
     const currentHeight = elements.pageStage.getBoundingClientRect().height;
+    document.querySelector("main.production").classList.toggle("home-view", isHomePage);
     elements.pageStage.style.height = currentHeight + "px";
 
     tabButtons.forEach(function(button) {
@@ -260,17 +411,107 @@ function setActiveTab(clickedButton) {
     });
     clickedButton.classList.add("active");
     activePage.classList.add("active");
+    if (homeHighlights.contains(document.activeElement)) {
+        clickedButton.focus();
+    }
+    if (isHomePage) {
+        homeHighlights.hidden = true;
+        homeHighlights.inert = true;
+        homeHighlights.setAttribute("aria-hidden", "true");
+        homeHighlights.classList.remove("is-visible", "is-exiting");
+        homeHighlights.style.top = "";
+        homeHighlightItems.forEach(function(item) {
+            item.classList.remove("is-in-view");
+            item.inert = true;
+        });
+        isHomeHighlightsExiting = false;
+        pendingHomeHighlightsReveal = shouldAnimateHero;
+    } else {
+        pendingHomeHighlightsReveal = false;
+        setHomeHighlightsVisible(false);
+    }
 
     elements.pageTrack.style.transform =
         "translateX(-" + nextIndex * pageWidthPercent + "%)";
 
-    const nextHeight = getPageStageHeight(activePage);
-    elements.pageStage.style.height = nextHeight + "px";
+    let nextHeight = 0;
+    let targetInnerOffset = 0;
+    if (!isHomePage) {
+        nextHeight = getPageStageHeight(activePage);
+        if (shouldAnimateHero) {
+            elements.hero.style.removeProperty("height");
+            elements.hero.style.removeProperty("min-height");
+            elements.hero.style.removeProperty("flex");
+            elements.hero.style.removeProperty("justify-content");
+            targetHeroHeight = elements.hero.getBoundingClientRect().height;
+            elements.hero.style.height = heroHeight;
+            elements.hero.style.minHeight =
+                Math.min(currentHeroRect.height, targetHeroHeight) + "px";
+            elements.hero.style.flex = "0 0 auto";
+            elements.hero.style.justifyContent = "flex-start";
+        }
+    } else if (shouldAnimateHero) {
+        elements.hero.style.removeProperty("min-height");
+        targetHeroHeight = parseFloat(getComputedStyle(elements.hero).minHeight);
+        const innerHeight = elements.heroInner.getBoundingClientRect().height;
+        targetInnerOffset = Math.max(0, (targetHeroHeight - innerHeight) / 2);
+        elements.hero.style.minHeight = heroHeight;
+    }
+
+    if (shouldAnimateHero) {
+        elements.heroInner.getBoundingClientRect();
+    }
+
+    if (pageStageAnimationFrame !== null) {
+        cancelAnimationFrame(pageStageAnimationFrame);
+    }
+
+    if (prefersReducedMotion) {
+        elements.pageStage.style.height = nextHeight + "px";
+        if (shouldPreserveHeroLayout || heroLayoutTimeout !== null) {
+            releaseHeroLayout();
+        }
+        if (isHomePage && !pendingHomeHighlightsReveal) {
+            setHomeHighlightsVisible(true);
+        }
+    } else {
+        pageStageAnimationFrame = requestAnimationFrame(function() {
+            if (shouldAnimateHero) {
+                elements.hero.style.transition =
+                    "height .7s cubic-bezier(.4, 0, .2, 1)";
+                elements.hero.style.height = targetHeroHeight + "px";
+                elements.heroInner.style.transition =
+                    "transform .7s cubic-bezier(.4, 0, .2, 1)";
+                elements.heroInner.style.transform = "translateY(" + targetInnerOffset + "px)";
+            }
+            elements.pageStage.style.height = nextHeight + "px";
+            pageStageAnimationFrame = null;
+        });
+
+        if (shouldAnimateHero) {
+            heroStageTransitionHandler = function(event) {
+                if (event.target !== elements.pageStage || event.propertyName !== "height") {
+                    return;
+                }
+
+                releaseHeroLayout();
+            };
+            elements.pageStage.addEventListener("transitionend", heroStageTransitionHandler);
+            heroLayoutTimeout = window.setTimeout(releaseHeroLayout, 800);
+        }
+    }
 }
 
 // Connect every main navigation button to the page-switching function.
 tabButtons.forEach(function(button) {
     button.addEventListener("click", function() {
         setActiveTab(button);
+    });
+});
+
+// Route Home highlight actions through the same tab behavior as main navigation.
+document.querySelectorAll("[data-target-tab]").forEach(function(button) {
+    button.addEventListener("click", function() {
+        document.getElementById(button.dataset.targetTab).click();
     });
 });
