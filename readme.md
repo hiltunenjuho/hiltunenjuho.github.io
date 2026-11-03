@@ -5,7 +5,7 @@
 <h1 align="center">Juho M. Hiltunen</h1>
 
 <p align="center">
-	Personal portfolio for practical software, automations, and integrations.<br>
+	Personal software developer portfolio website.<br>
 	<a href="https://hiltunenjuho.github.io/"><strong>Visit the live website</strong></a>
 </p>
 
