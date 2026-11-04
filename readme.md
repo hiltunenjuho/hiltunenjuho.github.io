@@ -18,7 +18,7 @@
 
 ## The site
 
-A personal introduction and portfolio, with Home, About, Projects, and Contact sections. Animated navigation and interactive carousels make the content easy to explore.
+A personal introduction and portfolio, with Home, About, Projects, and Contact sections. The Home page pairs an animated introduction with highlights that lead into the rest of the site; animated navigation and interactive carousels make it easy to explore.
 
 - **About:** Juho's background, approach, and direction in software development.
 - **Projects:** A space for selected work and experiments.
