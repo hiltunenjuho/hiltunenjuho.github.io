@@ -63,6 +63,12 @@ main.production {
     padding-bottom: 3em;
 }
 
+.scrollCue {
+    display: none;
+}
+
+/*#region HOME LAYOUT*/
+
 main.production.home-view {
     display: flex;
     flex-direction: column;
@@ -86,38 +92,43 @@ main.production.home-view {
             min-height: calc(100svh - 2 * var(--mainHeaderHeight) - 2vh - 2vw);
         }
     }
-}
 
-.scrollCue {
-    display: none;
-}
+    .scrollCue {
+        position: absolute;
+        top: calc(100svh - var(--mainHeaderHeight) - 4.25rem);
+        left: 50%;
+        z-index: 3;
+        display: grid;
+        justify-items: center;
+        gap: .15rem;
+        color: rgba(255, 215, 0, .8);
+        font-family: var(--font-code);
+        font-size: .62rem;
+        letter-spacing: .16em;
+        text-decoration: none;
+        text-shadow: 0 0 12px rgba(255, 215, 0, .45);
+        opacity: 0;
+        transform: translate(-50%, .5rem);
+        animation: scrollCueReveal .7s ease-out 3.2s forwards;
 
-main.production.home-view .scrollCue {
-    position: absolute;
-    top: calc(100svh - var(--mainHeaderHeight) - 4.25rem);
-    left: 50%;
-    z-index: 3;
-    display: grid;
-    justify-items: center;
-    gap: .15rem;
-    color: rgba(255, 215, 0, .8);
-    font-family: var(--font-code);
-    font-size: .62rem;
-    letter-spacing: .16em;
-    text-decoration: none;
-    text-shadow: 0 0 12px rgba(255, 215, 0, .45);
-    opacity: 0;
-    transform: translate(-50%, .5rem);
-    animation: scrollCueReveal .7s ease-out 3.2s forwards;
+        .material-symbols-outlined {
+            font-size: 1.8rem;
+            animation: scrollCueNudge 1.5s ease-in-out 3.9s infinite;
+        }
 
-    .material-symbols-outlined {
-        font-size: 1.8rem;
-        animation: scrollCueNudge 1.5s ease-in-out 3.9s infinite;
-    }
+        &:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 5px;
+        }
 
-    &:focus-visible {
-        outline: 2px solid var(--primary);
-        outline-offset: 5px;
+        @media (prefers-reduced-motion: reduce) {
+            animation: scrollCueReveal 0s linear 3.2s forwards;
+            transform: translateX(-50%);
+
+            .material-symbols-outlined {
+                animation: none;
+            }
+        }
     }
 }
 
@@ -137,6 +148,27 @@ main.production.home-view .scrollCue {
     }
 }
 
+/*#endregion HOME LAYOUT*/
+
+.pulsingText {
+    opacity: 1;
+    text-shadow: 0px 0px 10px gold;
+    animation: textPulse 2s ease-in infinite;
+}
+@keyframes textPulse {
+    0% {
+        opacity: 1;
+        text-shadow: 0px 0px 10px gold;
+    }
+    70% {
+        opacity: 0.6;
+        text-shadow: 0px 0px 6px gold;
+    }
+    100% {
+        opacity: 1;
+        text-shadow: 0px 0px 10px gold;
+    }
+}
 /*#endregion DOCUMENT*/
 
 /*#region STAGE*/
@@ -184,6 +216,15 @@ main.production.home-view .scrollCue {
                     filter: blur(28px);
                     pointer-events: none;
                 }
+
+                .aboutCardTitle {
+                                margin: 0 0 .8em;
+                                line-height: 1.15;
+                                font-family: var(--font-serif);
+                                font-size: clamp(1.3em, 3.6vw, 1.7em);
+                                font-weight: 600;
+                                text-wrap: balance;
+                            }
             }
             .sectionTitle {
                 width: var(--contentWidth);
@@ -283,11 +324,6 @@ main.production.home-view .scrollCue {
                                 font-size: .75em;
                                 letter-spacing: .12em;
                                 text-shadow: 0 0 14px rgba(255,215,0,.24);
-                            }
-                            .aboutCardTitle {
-                                margin: 0 0 .8em;
-                                font-size: 1.5em;
-                                line-height: 1.15;
                             }
                             > p:last-child {
                                 margin-bottom: 0;
@@ -797,7 +833,7 @@ main.production.home-view .scrollCue {
                     animation: typing 1.5s steps(20, end) 2.5s forwards;
                     #purpleTypedText {
                         cursor: pointer;
-
+                        transition: color 0.2s ease;
                         @media (hover: hover) and (pointer: fine) {
                             &:hover {
                                 color: var(--accent);
@@ -834,6 +870,8 @@ main.production.home-view .scrollCue {
     }
 }
 /*#endregion HERO*/
+
+/*#region HOME HIGHLIGHTS*/
 
 .homeHighlights {
     display: grid;
@@ -981,7 +1019,7 @@ main.production.home-view .scrollCue {
         .homeHighlightEyebrow {
             margin-bottom: .65em;
             color: var(--primary);
-            font-family: var(--font-code);
+            font-family: var(--font-clarity);
             font-size: .65em;
             letter-spacing: .12em;
             text-shadow: 0 0 15px rgba(255, 215, 0, .2);
@@ -1042,20 +1080,6 @@ main.production.home-view .scrollCue {
         }
     }
 
-    &.is-exiting {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        margin: 0;
-        z-index: 0;
-        transform: translateX(-50%);
-
-        .homeHighlightItem {
-            visibility: visible;
-            animation: homeHighlightExit .42s cubic-bezier(.4, 0, 1, 1) both;
-        }
-    }
-
     @media (max-width: 520px) {
         gap: clamp(4.5rem, 18vw, 5.5rem);
         margin-bottom: clamp(8rem, 24vw, 10rem);
@@ -1078,6 +1102,10 @@ main.production.home-view .scrollCue {
             grid-row: 1;
         }
 
+        .homeHighlightItemReverse {
+            grid-template-columns: minmax(0, 1fr) minmax(3.4rem, .24fr);
+        }
+
         .homeHighlightIcon .material-symbols-outlined {
             font-size: 2.55em;
         }
@@ -1095,23 +1123,6 @@ main.production.home-view .scrollCue {
 
         .homeHighlightItem::before {
             opacity: .65;
-        }
-    }
-}
-
-@media (max-width: 520px) {
-    #homeHighlights .homeHighlightItemReverse {
-        grid-template-columns: minmax(0, 1fr) minmax(3.4rem, .24fr);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    main.production.home-view .scrollCue {
-        animation: scrollCueReveal 0s linear 3.2s forwards;
-        transform: translateX(-50%);
-
-        .material-symbols-outlined {
-            animation: none;
         }
     }
 }
@@ -1161,21 +1172,13 @@ main.production.home-view .scrollCue {
     }
 }
 
-@keyframes homeHighlightExit {
-    to {
-        opacity: 0;
-        transform: translateY(100vh);
-    }
-}
-
-#siteFooter {
-    position: relative;
-    z-index: 3;
-}
+/*#endregion HOME HIGHLIGHTS*/
 
 /*#region FOOTER*/
 
 #siteFooter {
+    position: relative;
+    z-index: 3;
     box-sizing: border-box;
     padding: clamp(12px, 3vw, 36px);
     background: linear-gradient(-45deg, #996515 0%, #ffd700 100%);

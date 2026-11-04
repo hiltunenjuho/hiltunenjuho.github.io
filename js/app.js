@@ -34,12 +34,9 @@ const pageContent = document.querySelectorAll(".pageContent");
 const homeHighlights = document.getElementById("homeHighlights");
 const pageWidthPercent = 100 / pageContent.length;
 const homeHighlightItems = homeHighlights.querySelectorAll(".homeHighlightItem");
-let isHomeHighlightsExiting = false;
-const completedHomeHighlightExits = new Set();
 let pageStageAnimationFrame = null;
 let heroLayoutTimeout = null;
 let heroStageTransitionHandler = null;
-let pendingHomeHighlightsReveal = false;
 const homeHighlightObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
         if (!entry.isIntersecting) {
@@ -255,62 +252,20 @@ projectsHeroLink.addEventListener("keydown", function(event) {
 // Show the current year in the footer without requiring a manual yearly edit.
 document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-// Keep the Home-only highlights out of view and the tab sequence when leaving Home.
-function setHomeHighlightsVisible(isVisible) {
-    if (isVisible) {
-        isHomeHighlightsExiting = false;
-        completedHomeHighlightExits.clear();
-        homeHighlights.hidden = false;
-        homeHighlights.inert = false;
-        homeHighlights.style.top = "";
-        homeHighlights.removeAttribute("aria-hidden");
-        homeHighlights.classList.remove("is-exiting");
-        homeHighlights.classList.add("is-visible");
-        homeHighlightItems.forEach(function(item) {
-            if (!item.classList.contains("is-in-view")) {
-                item.inert = true;
-                homeHighlightObserver.observe(item);
-            }
-        });
-        return;
-    }
+// Keep the Home highlights available on every page and reveal them as they enter view.
+function showHomeHighlights() {
+    homeHighlights.hidden = false;
+    homeHighlights.inert = false;
+    homeHighlights.removeAttribute("aria-hidden");
+    homeHighlights.classList.add("is-visible");
 
-    if (homeHighlights.hidden) {
-        return;
-    }
-
-    const mainBounds = homeHighlights.parentElement.getBoundingClientRect();
-    homeHighlights.style.top =
-        homeHighlights.getBoundingClientRect().top - mainBounds.top + "px";
-    homeHighlights.setAttribute("aria-hidden", "true");
-    homeHighlights.inert = true;
-    homeHighlights.classList.remove("is-visible");
-    homeHighlights.classList.add("is-exiting");
-    completedHomeHighlightExits.clear();
-    isHomeHighlightsExiting = true;
-    homeHighlightObserver.disconnect();
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        homeHighlights.hidden = true;
-        isHomeHighlightsExiting = false;
-    }
+    homeHighlightItems.forEach(function(item) {
+        if (!item.classList.contains("is-in-view")) {
+            item.inert = true;
+            homeHighlightObserver.observe(item);
+        }
+    });
 }
-
-homeHighlights.addEventListener("animationend", function(event) {
-    if (
-        !isHomeHighlightsExiting ||
-        event.animationName !== "homeHighlightExit" ||
-        !event.target.matches(".homeHighlightItem")
-    ) {
-        return;
-    }
-
-    completedHomeHighlightExits.add(event.target);
-    if (completedHomeHighlightExits.size === homeHighlightItems.length) {
-        homeHighlights.hidden = true;
-        isHomeHighlightsExiting = false;
-    }
-});
 
 document.getElementById("scrollCue").addEventListener("click", function(event) {
     event.preventDefault();
@@ -343,11 +298,6 @@ function releaseHeroLayout() {
     elements.hero.style.removeProperty("transition");
     elements.heroInner.style.removeProperty("transition");
     elements.heroInner.style.removeProperty("transform");
-
-    if (pendingHomeHighlightsReveal) {
-        pendingHomeHighlightsReveal = false;
-        setHomeHighlightsVisible(true);
-    }
 }
 
 // Find and display the page marked active in the HTML when the site loads.
@@ -361,7 +311,7 @@ document.querySelector("main.production").classList.toggle(
     "home-view",
     initialPage.id === "homeContent"
 );
-setHomeHighlightsVisible(initialPage.id === "homeContent");
+showHomeHighlights();
 
 // Switch the active page, slide the track, and animate the stage to its height.
 function setActiveTab(clickedButton) {
@@ -414,23 +364,6 @@ function setActiveTab(clickedButton) {
     if (homeHighlights.contains(document.activeElement)) {
         clickedButton.focus();
     }
-    if (isHomePage) {
-        homeHighlights.hidden = true;
-        homeHighlights.inert = true;
-        homeHighlights.setAttribute("aria-hidden", "true");
-        homeHighlights.classList.remove("is-visible", "is-exiting");
-        homeHighlights.style.top = "";
-        homeHighlightItems.forEach(function(item) {
-            item.classList.remove("is-in-view");
-            item.inert = true;
-        });
-        isHomeHighlightsExiting = false;
-        pendingHomeHighlightsReveal = shouldAnimateHero;
-    } else {
-        pendingHomeHighlightsReveal = false;
-        setHomeHighlightsVisible(false);
-    }
-
     elements.pageTrack.style.transform =
         "translateX(-" + nextIndex * pageWidthPercent + "%)";
 
@@ -470,9 +403,6 @@ function setActiveTab(clickedButton) {
         elements.pageStage.style.height = nextHeight + "px";
         if (shouldPreserveHeroLayout || heroLayoutTimeout !== null) {
             releaseHeroLayout();
-        }
-        if (isHomePage && !pendingHomeHighlightsReveal) {
-            setHomeHighlightsVisible(true);
         }
     } else {
         pageStageAnimationFrame = requestAnimationFrame(function() {
