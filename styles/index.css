@@ -571,6 +571,21 @@ main.production.home-view {
             padding-right: calc((var(--logoSize) + 2 * var(--logoMarginLeft)) * 0.2);
         }
     }
+    #profilePhoto {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: var(--logoSize);
+        height: var(--logoSize);
+        margin-right: var(--logoMarginLeft);
+        transform: translateY(-50%);
+        border-radius: calc(var(--mainHeaderHeight) / 4);
+        background-color: var(--background);
+        filter: saturate(1.2);
+        @media (max-width: 800px) {
+            display: none;
+        }
+    }
     @media (max-width: 800px) {
         height: var(--mainHeaderHeight);
         min-height: var(--mainHeaderHeight);
