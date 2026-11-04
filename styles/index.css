@@ -152,21 +152,22 @@ main.production.home-view {
 
 .pulsingText {
     opacity: 1;
-    text-shadow: 0px 0px 10px gold;
+    text-shadow: 0px 0px 8px goldenrod;
     animation: textPulse 2s ease-in infinite;
+    /* font-weight: bold; */
 }
 @keyframes textPulse {
     0% {
         opacity: 1;
-        text-shadow: 0px 0px 10px gold;
+        text-shadow: 0px 0px 8px goldenrod;
     }
     70% {
-        opacity: 0.6;
-        text-shadow: 0px 0px 6px gold;
+        opacity: 0.8;
+        text-shadow: 0px 0px 6px goldenrod;
     }
     100% {
         opacity: 1;
-        text-shadow: 0px 0px 10px gold;
+        text-shadow: 0px 0px 8px goldenrod;
     }
 }
 /*#endregion DOCUMENT*/
@@ -436,6 +437,7 @@ main.production.home-view {
             }
             .yellowText {
                 color: var(--primary);
+                text-shadow: 0 0 18px rgba(255,215,0,.25);
             }
         }
     }
@@ -882,7 +884,7 @@ main.production.home-view {
     margin: clamp(5rem, 12vh, 8rem) auto clamp(4rem, 9vw, 8rem);
     color: #DDD;
     font-family: var(--font-clarity);
-    font-size: clamp(.95rem, calc(var(--codeTextFontSize) * .52), 1.25rem);
+    font-size: clamp(.95rem, calc(var(--codeTextFontSize) * .6), 1.25rem);
 
     &[hidden] {
         display: none;
@@ -1071,7 +1073,7 @@ main.production.home-view {
         @media (hover: hover) and (pointer: fine) {
             &:hover {
                 transform: translateY(-1px);
-                box-shadow: 0 4px 16px -10px rgba(255, 215, 0, .85);
+                box-shadow: 0 4px 14px -10px rgba(255, 215, 0, .85);
 
                 span {
                     transform: translateX(3px);
