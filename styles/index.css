@@ -23,7 +23,7 @@
     --tabButtonBorderRadius: calc(var(--headerItemHeight) / 2.4);
     @media (max-width: 800px) {
         --mainHeaderHeight: 75px;
-        --tabIconSize: 27px;
+        --tabIconSize: 22px;
         --heroFontSize: clamp(3rem, 20vw, 6rem);
     }
 }
@@ -501,9 +501,7 @@ main.production.home-view {
                 flex-direction: column;
                 height: 100%;
                 min-width: 0;
-                padding-block:
-                    calc(var(--headerItemHeight) * 0.13 + 1px)
-                    calc(var(--headerItemHeight) * 0.10 + 1px);
+                padding-block: calc(var(--headerItemHeight) * 0.10 + 1px);
                 padding-inline: 0;
                 justify-content: space-evenly;
                 align-items: center;
@@ -548,7 +546,7 @@ main.production.home-view {
                 &.active {
                     color: var(--background);
                     .material-symbols-outlined {
-                        transform: scale(1.46);
+                        transform: scale(1.8);
                     }
                 }
 
