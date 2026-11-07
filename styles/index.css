@@ -152,22 +152,26 @@ main.production.home-view {
 
 .pulsingText {
     opacity: 1;
-    text-shadow: 0px 0px 8px goldenrod;
-    animation: textPulse 2s ease-in infinite;
-    /* font-weight: bold; */
+    text-shadow: 0px 0px 14px goldenrod;
+    animation: textPulse 1s ease-in infinite;
+    font-weight: bold;
+    filter: contrast(1.5)
 }
 @keyframes textPulse {
     0% {
         opacity: 1;
-        text-shadow: 0px 0px 8px goldenrod;
+        text-shadow: 0px 0px 14px goldenrod;
+        filter: contrast(1.5)
     }
-    70% {
+    80% {
         opacity: 0.8;
         text-shadow: 0px 0px 6px goldenrod;
+        filter: contrast(1.0);
     }
     100% {
         opacity: 1;
-        text-shadow: 0px 0px 8px goldenrod;
+        text-shadow: 0px 0px 14px goldenrod;
+        filter: contrast(1.5)
     }
 }
 /*#endregion DOCUMENT*/
