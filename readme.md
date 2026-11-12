@@ -21,7 +21,7 @@
 This portfolio showcases the work, product thinking, and web experiments behind Juho Hiltunen's software projects.
 
 - **Portfolio website:** personal branding, storytelling, and interactive front-end work
-- **Pharmacy Finder:** live nearest-pharmacy demo in the Helsinki Metropolitan Area
+- **Pharmacy Finder:** global nearest-pharmacy demo using OpenStreetMap, with up to 10 results within 50 km
 - **Project experiments:** product concepts, browser tooling, and workflow automation
 
 ## Featured live demos
