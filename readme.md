@@ -5,8 +5,8 @@
 <h1 align="center">Juho M. Hiltunen</h1>
 
 <p align="center">
-	Personal software developer portfolio website.<br>
-	<a href="https://hiltunenjuho.github.io/"><strong>Visit the live website</strong></a>
+	Software developer · product-minded builder · problem solver<br>
+	<a href="https://hiltunenjuho.github.io/"><strong>Visit the live portfolio</strong></a>
 </p>
 
 <p align="center">
@@ -16,17 +16,23 @@
 	<img src="https://img.shields.io/badge/Hosted%20on-GitHub%20Pages-222?style=flat&logo=githubpages&logoColor=white" alt="Hosted on GitHub Pages">
 </p>
 
-## The site
+## Highlights
 
-A personal introduction and portfolio, with Home, About, Projects, and Contact sections. The Home page pairs an animated introduction with highlights that lead into the rest of the site; animated navigation and interactive carousels make it easy to explore.
+This portfolio showcases the work, product thinking, and web experiments behind Juho Hiltunen's software projects.
 
-- **About:** Juho's background, approach, and direction in software development.
-- **Projects:** A space for selected work and experiments.
-- **Contact:** Email, LinkedIn, GitHub, and a message form that prepares an email in the visitor's email app.
+- **Portfolio website:** personal branding, storytelling, and interactive front-end work
+- **Pharmacy Finder:** live nearest-pharmacy demo in the Helsinki Metropolitan Area
+- **Project experiments:** product concepts, browser tooling, and workflow automation
+
+## Featured live demos
+
+- [Pharmacy Finder web app](https://hiltunenjuho.github.io/nearest-pharmacy-web/)
+- [Pharmacy Finder iOS repo](https://github.com/hiltunenjuho/nearest-pharmacy-ios)
+- [GitHub profile](https://github.com/hiltunenjuho)
 
 ## Built with
 
-HTML, CSS, and JavaScript. The site is hosted on GitHub Pages and requires no build step.
+HTML, CSS, and JavaScript. The portfolio is hosted on GitHub Pages and keeps a fast, static deployment model.
 
 ## License
 
