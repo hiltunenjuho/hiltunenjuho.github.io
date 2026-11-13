@@ -1,348 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juho Hiltunen | Software Developer Portfolio</title>
-    <meta name="description" content="Juho M. Hiltunen builds practical software, automations, and integrations that solve real business problems.">
-    <link rel="canonical" href="https://hiltunenjuho.github.io/">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://hiltunenjuho.github.io/">
-    <meta property="og:title" content="Juho M. Hiltunen">
-    <meta property="og:description" content="Practical software, automations, and integrations that solve real business problems.">
-    <meta property="og:image" content="https://hiltunenjuho.github.io/assets/images/android-chrome-512x512.png">
-    <meta property="og:image:width" content="512">
-    <meta property="og:image:height" content="512">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Juho M. Hiltunen">
-    <meta name="twitter:description" content="Practical software, automations, and integrations that solve real business problems.">
-    <meta name="twitter:image" content="https://hiltunenjuho.github.io/assets/images/android-chrome-512x512.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
-    <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
-    <link rel="icon" href="assets/images/favicon.ico" sizes="any">
-    <link rel="manifest" href="assets/images/site.webmanifest">
-    <link rel="stylesheet" href="styles/index.css">
-    <link href='https://fonts.googleapis.com/css?family=Euphoria Script' rel='stylesheet'>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Clarity+City:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <script src="js/app.js" defer></script>
-</head>
-<body>
-    <header id="mainHeader">
-            <img id="logo" src="assets/images/logo.svg" alt="Juho Hiltunen logo">
-            <div id="headerTabsetContainer">
-                <nav class="tabset" id="headerTabset" aria-label="Main navigation">
-                    <button class="tabButton active" id="homeTabButton" data-page="homeContent" type="button" aria-label="Home">
-                        <span class="material-symbols-outlined" aria-hidden="true">home</span>
-                    </button>
-                    <button class="tabButton" id="aboutTabButton" data-page="aboutContent" type="button" aria-label="About">
-                        <span class="material-symbols-outlined" aria-hidden="true">info</span>
-                    </button>
-                    <button class="tabButton" id="projectsTabButton" data-page="projectsContent" type="button" aria-label="Projects">
-                        <span class="material-symbols-outlined" aria-hidden="true">folder_open</span>
-                    </button>
-                    <button class="tabButton" id="contactTabButton" data-page="contactContent" type="button" aria-label="Contact">
-                        <span class="material-symbols-outlined" aria-hidden="true">alternate_email</span>
-                    </button>
-                </nav>
-            </div>
-    </header>
-    <main class="production">
-        <div id="pageStage">
-            <div id="pageTrack">
-                <section class="pageContent active" id="homeContent">
-                </section>
-                <section class="pageContent" id="aboutContent">
-                    <h1 class="sectionTitle">// About <span class="yellowText">me</span></h1>
-                    <div class="aboutCarousel cardCarousel" id="aboutCarousel" role="region" aria-roledescription="carousel" aria-label="About Juho">
-                        <div class="aboutCardControls cardCarouselControls" role="group" aria-label="About card navigation">
-                            <button class="aboutCardButton cardCarouselButton" id="previousAboutCard" type="button" aria-label="Previous About card" aria-controls="aboutCardTrack">
-                                <span class="material-symbols-outlined" aria-hidden="true">chevron_backward</span>
-                            </button>
-                            <span class="aboutCardCounter cardCarouselCounter" id="aboutCardCounter" aria-live="polite">1 / 4</span>
-                            <button class="aboutCardButton cardCarouselButton" id="nextAboutCard" type="button" aria-label="Next About card" aria-controls="aboutCardTrack">
-                                <span class="material-symbols-outlined" aria-hidden="true">chevron_forward</span>
-                            </button>
-                        </div>
-                        <div class="aboutCardViewport cardCarouselViewport" id="aboutCardViewport" tabindex="0" aria-label="About cards. Use the arrow keys or swipe to navigate.">
-                            <div class="aboutCardTrack cardCarouselTrack" id="aboutCardTrack">
-                                <article class="sectionContainer aboutCard cardCarouselCard" aria-roledescription="slide">
-                                    <p class="aboutCardEyebrow">01 / MY PATH</p>
-                                    <h2 class="aboutCardTitle">
-                                        A <span class="yellowText pulsingText">non-traditional path</span> into software
-                                    </h2>
-                                    <p>
-                                        My route into software development has been <span class="yellowText">hands-on</span> rather than conventional. The turning point came when I started noticing repetitive work, disconnected systems, and frustrating interfaces in <span class="yellowText">real business workflows</span>.
-                                        <br><br>
-                                        I learned by applying what I knew to <span class="yellowText">real problems</span>, building JavaScript tools, automations, and integrations instead of stopping at exercises. Seeing <span class="yellowText">my software</span> make everyday work simpler turned a long-standing interest into a <span class="yellowText">clear career goal</span>.
-                                    </p>
-                                </article>
-                                <article class="sectionContainer aboutCard cardCarouselCard" aria-roledescription="slide">
-                                    <p class="aboutCardEyebrow">02 / WHAT DRIVES ME</p>
-                                    <h2 class="aboutCardTitle">
-                                        For <span class="yellowText pulsingText">me</span>,
-                                    </h2>
-                                    <p>
-                                        software development is a mix of problem-solving, creativity and <span class="yellowText">continuous learning</span>.
-                                        <br>
-                                        <br>
-                                        Whether I'm developing a web app, exploring a new technology or improving an existing product,
-                                        <br>
-                                        <br>
-                                        I enjoy the whole process of turning <span class="yellowText">ideas</span> into working <span class="yellowText">solutions</span>.
-                                    </p>
-                                </article>
-                                <article class="sectionContainer aboutCard cardCarouselCard" aria-roledescription="slide">
-                                    <p class="aboutCardEyebrow">03 / HOW I WORK</p>
-                                    <h2 class="aboutCardTitle">
-                                        Start with the <span class="yellowText pulsingText">real problem</span>
-                                    </h2>
-                                    <p>
-                                        I look for the point where a workflow loses time, information, or clarity. Then I learn how the work is actually done and build a <span class="yellowText">solution</span> around the <span class="yellowText">people</span> who use it.
-                                        <br><br>
-                                        My projects have included tools that bring useful information together, reduce repetitive steps, and make <span class="yellowText">complex workflows easier</span> to navigate. <span class="yellowText">I care</span> about the <span class="yellowText">difference</span> a solution makes, not just the <span class="yellowText">technologies</span> behind it.
-                                    </p>
-                                </article>
-                                <article class="sectionContainer aboutCard cardCarouselCard" aria-roledescription="slide">
-                                    <p class="aboutCardEyebrow">04 / THE GOAL</p>
-                                    <h2 class="aboutCardTitle">
-                                        Building toward <span class="yellowText pulsingText">what's next</span>
-                                    </h2>
-                                    <p>
-                                        Right now, I’m working toward a full-time role in software development, bringing a <span class="yellowText">practical understanding</span> of business workflows and experience building tools for <span class="yellowText">real needs</span>.
-                                        <br><br>
-                                        I’m continuing to deepen my skills, while exploring how <span class="yellowText">AI</span> can make useful systems work even <span class="yellowText">better</span>.
-                                        <br>
-                                        <br>
-                                        My focus stays the same: understand the problem, build thoughtfully, and <span class="yellowText">keep learning</span>.
-                                    </p>
-                                </article>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="pageContent" id="projectsContent">
-                    <h1 class="sectionTitle">// Selected <span class="yellowText">projects</span></h1>
-                    <div class="projectsCarousel cardCarousel" id="projectsCarousel" role="region" aria-roledescription="carousel" aria-label="Projects">
-                        <div class="aboutCardControls cardCarouselControls" role="group" aria-label="Project card navigation">
-                            <button class="aboutCardButton cardCarouselButton" type="button" aria-label="Previous project card" aria-controls="projectsCardTrack">
-                                <span class="material-symbols-outlined" aria-hidden="true">chevron_backward</span>
-                            </button>
-                            <span class="aboutCardCounter cardCarouselCounter" aria-live="polite">1 / 2</span>
-                            <button class="aboutCardButton cardCarouselButton" type="button" aria-label="Next project card" aria-controls="projectsCardTrack">
-                                <span class="material-symbols-outlined" aria-hidden="true">chevron_forward</span>
-                            </button>
-                        </div>
-                        <div class="aboutCardViewport cardCarouselViewport" tabindex="0" aria-label="Project cards. Use the arrow keys or swipe to navigate.">
-                            <div class="aboutCardTrack cardCarouselTrack" id="projectsCardTrack">
-                                <article class="sectionContainer aboutCard cardCarouselCard" aria-roledescription="slide">
-                                    <p class="aboutCardEyebrow">01 / SELECTED WORK</p>
-                                    <h2 class="aboutCardTitle">Software built to make work <span class="yellowText pulsingText">easier</span></h2>
-                                    <p>
-                                        These projects show how I turn practical problems into useful software. Explore the live demos, the code behind them, and a new learning platform currently in development.
-                                    </p>
-                                </article>
-                                <article class="sectionContainer aboutCard cardCarouselCard" aria-roledescription="slide">
-                                    <p class="aboutCardEyebrow">02 / WHAT'S NEXT</p>
-                                    <h2 class="aboutCardTitle">A new way to learn is <span class="yellowText pulsingText">on its way</span></h2>
-                                    <p>
-                                        Knowdium is an upcoming quiz platform designed to make learning and sharing knowledge more engaging. Follow its progress on GitHub.
-                                    </p>
-                                </article>
-                            </div>
-                        </div>
-                    </div>
-                    <section class="projectShowcase" aria-label="Selected projects">
-                        <article class="projectItem">
-                            <a class="projectPreviewLink" href="https://hiltunenjuho.github.io/nearest-pharmacy-web/" target="_blank" rel="noopener noreferrer" aria-label="Open Pharmacy Finder live demo">
-                                <div class="projectPreview projectPreviewSplit" aria-hidden="true">
-                                    <img class="projectPreviewDark" src="assets/images/pharmacy-finder-dark.png" alt="">
-                                    <img class="projectPreviewLight" src="assets/images/pharmacy-finder-light.png" alt="">
-                                    <span class="projectPreviewTitle">Pharmacy Finder</span>
-                                    <span class="projectPreviewMode">DARK / LIGHT</span>
-                                </div>
-                            </a>
-                            <div class="projectCopy">
-                                <h2 class="projectTitle">Pharmacy Finder</h2>
-                                <p class="projectEyebrow">WEB APP · IOS APP</p>
-                                <p>Find nearby pharmacies with live opening hours, location-aware search, and direct route planning.</p>
-                                <div class="projectLinks">
-                                    <a href="https://hiltunenjuho.github.io/nearest-pharmacy-web/" target="_blank" rel="noopener noreferrer">
-                                        <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
-                                        Live demo
-                                    </a>
-                                    <a href="https://github.com/hiltunenjuho/nearest-pharmacy-web" target="_blank" rel="noopener noreferrer">
-                                        <span class="material-symbols-outlined" aria-hidden="true">code</span>
-                                        GitHub
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="projectItem">
-                            <a class="projectPreviewLink" href="https://hiltunenjuho.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Open Juho Hiltunen's portfolio">
-                                <div class="projectPreview">
-                                    <img src="assets/images/portfolio-preview.png" alt="">
-                                    <span class="projectPreviewTitle">Juho Hiltunen</span>
-                                </div>
-                            </a>
-                            <div class="projectCopy">
-                                <h2 class="projectTitle">Juho Hiltunen</h2>
-                                <p class="projectEyebrow">PERSONAL PORTFOLIO</p>
-                                <p>An interactive portfolio for selected work, background, and ways to get in touch.</p>
-                                <div class="projectLinks">
-                                    <a href="https://hiltunenjuho.github.io/" target="_blank" rel="noopener noreferrer">
-                                        <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
-                                        Live site
-                                    </a>
-                                    <a href="https://github.com/hiltunenjuho/hiltunenjuho.github.io" target="_blank" rel="noopener noreferrer">
-                                        <span class="material-symbols-outlined" aria-hidden="true">code</span>
-                                        GitHub
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="projectItem">
-                            <div class="projectPreviewLink" aria-hidden="true">
-                                <div class="projectPreview projectPreviewComingSoon">
-                                    <span class="comingSoonLabel">Coming soon!</span>
-                                    <span class="projectPreviewTitle">knowdium!</span>
-                                    <span class="comingSoonNote">A playful new way to learn is on its way.</span>
-                                </div>
-                            </div>
-                            <div class="projectCopy">
-                                <h2 class="projectTitle">knowdium!</h2>
-                                <p class="projectEyebrow">IN DEVELOPMENT</p>
-                                <p>A quiz platform in progress, built to make creating and playing quizzes more engaging.</p>
-                                <div class="projectLinks">
-                                    <a href="https://github.com/hiltunenjuho/knowdium" target="_blank" rel="noopener noreferrer">
-                                        <span class="material-symbols-outlined" aria-hidden="true">code</span>
-                                        GitHub
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                    </section>
-                </section>
-                <section class="pageContent" id="contactContent">
-                    <h1 class="sectionTitle">// Get in <span class="yellowText">touch</span></h1>
-                    <div class="sectionContainer contactCard">
-                        <h2 class="aboutCardTitle">Let's start a <span class="yellowText pulsingText">conversation</span></h2>
-                        <div class="contactLinks" aria-label="Contact links">
-                            <a class="contactLink" href="mailto:juho.m.hiltunen@gmail.com">
-                                <span class="material-symbols-outlined" aria-hidden="true">mail</span>
-                                <span>Email <small>juho.m.hiltunen@gmail.com</small></span>
-                            </a>
-                            <a class="contactLink" href="https://www.linkedin.com/in/hiltunenjuho/" target="_blank" rel="noopener noreferrer" aria-label="Open Juho's LinkedIn profile in a new tab">
-                                <span class="material-symbols-outlined" aria-hidden="true">link</span>
-                                <span>LinkedIn <small>linkedin.com/in/hiltunenjuho</small></span>
-                            </a>
-                            <a class="contactLink" href="https://github.com/hiltunenjuho" target="_blank" rel="noopener noreferrer" aria-label="Open Juho's GitHub profile in a new tab">
-                                <span class="material-symbols-outlined" aria-hidden="true">code</span>
-                                <span>GitHub <small>github.com/hiltunenjuho</small></span>
-                            </a>
-                        </div>
-                        <form class="contactForm" id="contactForm" aria-describedby="contactFormNote">
-                            <p class="contactFormNote" id="contactFormNote">
-                                Send a note using the form. Your email app will open with the message ready to review and send.
-                            </p>
-                            <label for="contactName">Your name</label>
-                            <input id="contactName" name="name" type="text" autocomplete="name" required>
-                            <label for="contactEmail">Your email</label>
-                            <input id="contactEmail" name="email" type="email" autocomplete="email" required>
-                            <label for="contactMessage">Message</label>
-                            <textarea id="contactMessage" name="message" rows="5" required></textarea>
-                            <button class="contactSubmit" type="submit">Prepare email</button>
-                        </form>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div class="heroOuterContainer" id="heroElement">
-            <div class="heroInnerContainer" id="heroContainer">
-                <h1 class="namePart" id="firstName">
-                    JUHO 
-                    <span id="middleName">
-                        M.
-                    </span>
-                </h1>
-                <h1 class="namePart" id="lastName">
-                    HILTUNEN
-                </h1>
-                <div id="heroSubText">
-                    <span class="typedTextReveal"><span class="typedText" id="typedText">// i <span id="purpleTypedText" role="button" tabindex="0">build</span> <span id="yellowTypedText">software</span>.</span></span>
-                </div>
-            </div>
-        </div>
-        <a class="scrollCue" id="scrollCue" href="#homeHighlights" aria-label="Scroll to explore the site">
-            <span class="scrollCueText">SCROLL TO EXPLORE</span>
-            <span class="material-symbols-outlined" aria-hidden="true">keyboard_arrow_down</span>
-        </a>
-        <section class="homeHighlights is-visible" id="homeHighlights" aria-label="Explore the site">
-            <article class="homeHighlightItem">
-                <button class="homeHighlightIcon" type="button" data-target-tab="aboutTabButton" aria-label="More about me">
-                    <span class="material-symbols-outlined">code</span>
-                    <span class="homeHighlightIconLabel">BUILD</span>
-                </button>
-                <div class="homeHighlightCopy">
-                    <p class="homeHighlightEyebrow">01 / THE "MYSELF" PART</p>
-                    <h2>Junior Software Developer.</h2>
-                    <p>I turn real-world problems into clear, useful software. Curious by nature, focused on making things work better.</p>
-                    <button class="homeHighlightButton" type="button" data-target-tab="aboutTabButton">
-                        More about me <span aria-hidden="true">→</span>
-                    </button>
-                </div>
-            </article>
-            <article class="homeHighlightItem homeHighlightItemReverse">
-                <div class="homeHighlightCopy">
-                    <p class="homeHighlightEyebrow">02 / THE "WORK" PART</p>
-                    <h2>Less talk. More things that work<span class="yellowText">.</span></h2>
-                    <p>An aspiring portfolio of projects, thoughtful experiments, and ideas brought to life.</p>
-                    <button class="homeHighlightButton" type="button" data-target-tab="projectsTabButton">
-                        Explore projects <span aria-hidden="true">→</span>
-                    </button>
-                </div>
-                <button class="homeHighlightIcon" type="button" data-target-tab="projectsTabButton" aria-label="Explore projects">
-                    <span class="material-symbols-outlined">folder_open</span>
-                    <span class="homeHighlightIconLabel">WORK</span>
-                </button>
-            </article>
-            <article class="homeHighlightItem">
-                <button class="homeHighlightIcon" type="button" data-target-tab="contactTabButton" aria-label="Get in touch">
-                    <span class="material-symbols-outlined">alternate_email</span>
-                    <span class="homeHighlightIconLabel">CONNECT</span>
-                </button>
-                <div class="homeHighlightCopy">
-                    <p class="homeHighlightEyebrow">03 / THE "NEXT STEP" PART</p>
-                    <h2>Good work starts with a conversation.</h2>
-                    <p>Have an idea, a challenge, or an opportunity? I want to hear about it.</p>
-                    <button class="homeHighlightButton" type="button" data-target-tab="contactTabButton">
-                        Get in touch <span aria-hidden="true">→</span>
-                    </button>
-                </div>
-            </article>
-        </section>
-    </main>
-    <footer id="siteFooter">
-        <div id="footerMain">
-            <div class="footerSection" id="footerRight">
-                <p class="footerHeading">CONTACT INFO</p>
-                <div class="footerLinks">
-                    <a href="mailto:juho.m.hiltunen@gmail.com">Email</a>
-                    <a href="https://www.linkedin.com/in/hiltunenjuho/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    <a href="https://github.com/hiltunenjuho" target="_blank" rel="noopener noreferrer">GitHub</a>
-                </div>
-            </div>
-            <div class="footerSection" id="footerLeft">
-                <p class="footerCopyright">
-                    © <span id="currentYear"></span> Juho M. Hiltunen. All rights reserved for personal content and branding.
-                </p>
-                <a class="footerLicense" href="LICENSE">Website code licensed under MIT</a>
-            </div>
-            <a class="footerBackToTop" href="#mainHeader">Back to top ↑</a>
-        </div>
-    </footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111315" />
+    <title>Juho Hiltunen | Software Developer</title>
+    <meta
+      name="description"
+      content="Juho Hiltunen builds practical software, automations, and integrations that make real-world work clearer and easier."
+    />
+    <link rel="canonical" href="https://hiltunenjuho.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hiltunenjuho.github.io/" />
+    <meta property="og:title" content="Juho Hiltunen | Software Developer" />
+    <meta
+      property="og:description"
+      content="Practical software, automations, and integrations for real-world work."
+    />
+    <meta
+      property="og:image"
+      content="https://hiltunenjuho.github.io/assets/images/android-chrome-512x512.png"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Juho Hiltunen | Software Developer" />
+    <meta
+      name="twitter:description"
+      content="Practical software, automations, and integrations for real-world work."
+    />
+    <meta
+      name="twitter:image"
+      content="https://hiltunenjuho.github.io/assets/images/android-chrome-512x512.png"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo.svg" />
+    <link rel="icon" href="/assets/images/favicon.ico" sizes="any" />
+    <link rel="manifest" href="/assets/images/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@500;600;700;800&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Honk:MORF,SHLN@15,50&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

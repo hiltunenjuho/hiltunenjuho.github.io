@@ -1,2 +1,8 @@
-.github/
+node_modules/
+dist/
+*.tsbuildinfo
+.github/*
+!.github/workflows/
+.github/workflows/*
+!.github/workflows/deploy.yml
 CV - Juho Hiltunen.pdf
