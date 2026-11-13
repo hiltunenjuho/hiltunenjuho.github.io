@@ -361,6 +361,14 @@ function setActiveTab(clickedButton) {
     });
     clickedButton.classList.add("active");
     activePage.classList.add("active");
+    const nextHash = clickedButton.id === "contactTabButton" ? "#contact" : "";
+    if (window.location.hash !== nextHash) {
+        window.history.replaceState(
+            null,
+            "",
+            window.location.pathname + window.location.search + nextHash
+        );
+    }
     if (homeHighlights.contains(document.activeElement)) {
         clickedButton.focus();
     }
@@ -438,6 +446,15 @@ tabButtons.forEach(function(button) {
         setActiveTab(button);
     });
 });
+
+// Deep-link the Contact tab so external project links can open it directly.
+function activateContactHash() {
+    if (window.location.hash === "#contact") {
+        document.getElementById("contactTabButton").click();
+    }
+}
+window.addEventListener("hashchange", activateContactHash);
+activateContactHash();
 
 // Route Home highlight actions through the same tab behavior as main navigation.
 document.querySelectorAll("[data-target-tab]").forEach(function(button) {
