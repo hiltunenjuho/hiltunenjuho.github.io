@@ -34,10 +34,12 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
       const topHeight = isMobile ? 75 : Math.max(viewportHeight * 0.1, 100);
       const compactHeight = isMobile ? 64 : 72;
       const height = topHeight + (compactHeight - topHeight) * sizeProgress;
-      const topWidth = viewportWidth - viewportHeight * 0.02;
       const compactWidth = isMobile
-        ? topWidth
+        ? viewportWidth - viewportHeight * 0.02
         : Math.min(1120, viewportWidth - 48);
+      const topWidth = isMobile
+        ? compactWidth
+        : Math.max(compactWidth, Math.min(1180, viewportWidth - 80));
       const width = topWidth + (compactWidth - topWidth) * sizeProgress;
       const contentWidth = Number.parseFloat(
         getComputedStyle(document.documentElement).getPropertyValue("--contentWidth"),
@@ -123,6 +125,14 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
             alt=""
           />
         </button>
+        {!appMenuOpen && (
+          <div className="appSwitcherHint" aria-hidden="true">
+            <svg viewBox="0 0 16 16">
+              <path d="m4 10 4-4 4 4" />
+            </svg>
+            <span>Try my other apps!</span>
+          </div>
+        )}
         <nav
           className="appSwitcherMenu"
           id="appSwitcherMenu"
