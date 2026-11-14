@@ -64,6 +64,16 @@ export function AboutPage() {
         About me
       </h1>
       <CardCarousel id="aboutCarousel" label="About Juho" cards={aboutCards} />
+      <a
+        className="aboutCvDownload"
+        href="/assets/cv-juho-hiltunen.pdf"
+        download="Juho-Hiltunen-CV.pdf"
+      >
+        <span className="material-symbols-outlined" aria-hidden="true">
+          download
+        </span>
+        Download CV
+      </a>
     </>
   );
 }

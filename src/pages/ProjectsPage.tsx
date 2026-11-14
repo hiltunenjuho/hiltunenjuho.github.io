@@ -94,8 +94,9 @@ export function ProjectsPage() {
                 src="/assets/images/pharmacy-finder-light.png"
                 alt=""
               />
-              <span className="projectPreviewTitle">Pharmacy Finder</span>
-              <span className="projectPreviewMode">DARK / LIGHT</span>
+              <span className="projectPreviewTitle projectPreviewTitlePharmacy">
+                Pharmacy Finder
+              </span>
             </div>
           }
           links={[

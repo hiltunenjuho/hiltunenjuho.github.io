@@ -26,21 +26,25 @@ This portfolio presents selected software projects, my approach to problem-solvi
 - **[Portfolio](https://hiltunenjuho.github.io/):** an interactive site for selected work and background, with source in the [portfolio repository](https://github.com/hiltunenjuho/hiltunenjuho.github.io).
 - **[Knowdium](https://github.com/hiltunenjuho/knowdium):** a game-first multiple-choice trivia prototype in development; its live demo is coming soon.
 
-## Run locally
+## Screenshots
 
-Requires Node.js 22 or later.
+<p align="center">
+  <img src="./public/assets/images/pharmacy-finder-dark.png" alt="Pharmacy Finder web demo in dark theme" width="49%">
+  <img src="./public/assets/images/pharmacy-finder-light.png" alt="Pharmacy Finder web demo in light theme" width="49%">
+</p>
+<p align="center"><em>Pharmacy Finder's live web demo in dark and light themes.</em></p>
 
-```sh
-npm ci
-npm run dev
-```
+<p align="center">
+  <img src="./public/assets/images/portfolio-preview.png" alt="Portfolio homepage on desktop" width="49%">
+  <img src="./public/assets/images/knowdium-preview.png" alt="Knowdium trivia prototype showing a question and answer choices" width="49%">
+</p>
+<p align="center"><em>Portfolio homepage and an early Knowdium gameplay view.</em></p>
 
-Create and preview a production build:
+## Live website
 
-```sh
-npm run build
-npm run preview
-```
+The portfolio is published on GitHub Pages: **[hiltunenjuho.github.io](https://hiltunenjuho.github.io/)**.
+Explore the live site for selected projects, background, and contact details; project cards link
+directly to available demos and source repositories.
 
 ## Deployment
 

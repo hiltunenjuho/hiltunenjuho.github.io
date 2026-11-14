@@ -213,8 +213,7 @@ main.production.home-view {
     box-sizing: border-box;
     position: relative;
     z-index: 2;
-    overflow-x: clip;
-    overflow-y: visible;
+    overflow: clip;
     transition: height .32s cubic-bezier(.22, 1, .36, 1);
     #pageTrack {
         display: flex;
@@ -278,6 +277,37 @@ main.production.home-view {
                 text-shadow: none;
                 .yellowText {
                     text-shadow: none;
+                }
+            }
+            .aboutCvDownload {
+                display: inline-flex;
+                min-height: 2.75em;
+                align-items: center;
+                justify-content: center;
+                gap: .55em;
+                margin-top: 1.25em;
+                padding: .35em 1.15em;
+                border: 1px solid var(--primary);
+                border-radius: 999px;
+                background: var(--primary);
+                color: #211C0D;
+                font-weight: 700;
+                text-decoration: none;
+                transition: box-shadow .2s ease;
+                .material-symbols-outlined {
+                    font-family: "Material Symbols Outlined";
+                    font-size: 1.2em;
+                    font-feature-settings: "liga";
+                    -webkit-font-feature-settings: "liga";
+                }
+                &:focus-visible {
+                    outline: 2px solid var(--primary);
+                    outline-offset: 3px;
+                }
+                @media (hover: hover) and (pointer: fine) {
+                    &:hover {
+                        box-shadow: 0 0 18px rgba(255, 215, 0, .35);
+                    }
                 }
             }
             .aboutCarousel, .projectsCarousel {
@@ -460,6 +490,11 @@ main.production.home-view {
                     line-height: 1.1;
                     text-shadow: 0 2px 18px rgba(0, 0, 0, .9);
                 }
+                .projectPreviewTitlePharmacy {
+                    font-family: "Manrope", "DM Sans", sans-serif;
+                    font-weight: 700;
+                    letter-spacing: -.025em;
+                }
             }
             .projectPreview img {
                 transition: transform .25s ease;
@@ -474,28 +509,11 @@ main.production.home-view {
                 &::after {
                     position: absolute;
                     z-index: 1;
-                    top: -8%;
-                    bottom: -8%;
-                    left: 44%;
-                    width: 2px;
+                    inset: 0;
                     background: rgba(255, 255, 255, .78);
-                    box-shadow: 0 0 12px rgba(0, 0, 0, .7);
+                    clip-path: polygon(51.8% 0, 52.2% 0, 36.2% 100%, 35.8% 100%);
+                    filter: drop-shadow(0 0 6px rgba(0, 0, 0, .7));
                     content: "";
-                    transform: rotate(9deg);
-                }
-                .projectPreviewMode {
-                    position: absolute;
-                    top: .8rem;
-                    right: .8rem;
-                    padding: .3rem .5rem;
-                    border: 1px solid rgba(255, 255, 255, .35);
-                    border-radius: 999px;
-                    color: #fff;
-                    background: rgba(0, 0, 0, .55);
-                    backdrop-filter: blur(8px);
-                    font-family: var(--font-code);
-                    font-size: .58rem;
-                    letter-spacing: .1em;
                 }
             }
             .projectPreviewComingSoon {
