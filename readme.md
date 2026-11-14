@@ -22,7 +22,7 @@ This portfolio presents selected software projects, my approach to problem-solvi
 
 ## Selected work
 
-- **[Pharmacy Finder](https://hiltunenjuho.github.io/nearest-pharmacy-web/):** a live web demo for finding nearby pharmacies, checking available opening information, and planning a route. The project also includes a SwiftUI package for an iOS host app: [web source](https://github.com/hiltunenjuho/nearest-pharmacy-web) · [iOS package](https://github.com/hiltunenjuho/nearest-pharmacy-ios).
+- **[Pharmacy Finder](https://hiltunenjuho.github.io/nearest-pharmacy-web/):** a live web demo for finding nearby pharmacies, checking available opening information, and planning a route. The project also includes a SwiftUI iOS app: [web source](https://github.com/hiltunenjuho/nearest-pharmacy-web) · [iOS source](https://github.com/hiltunenjuho/nearest-pharmacy-ios).
 - **[Portfolio](https://hiltunenjuho.github.io/):** an interactive site for selected work and background, with source in the [portfolio repository](https://github.com/hiltunenjuho/hiltunenjuho.github.io).
 - **[Knowdium](https://hiltunenjuho.github.io/knowdium/):** a playable multilingual trivia game with three modes, live questions and optional in-browser translation. [Source code](https://github.com/hiltunenjuho/knowdium).
 

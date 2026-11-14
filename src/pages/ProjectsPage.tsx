@@ -79,7 +79,7 @@ export function ProjectsPage() {
       <section className="projectShowcase" aria-label="Selected projects">
         <ProjectCard
           title="Pharmacy Finder"
-          eyebrow="WEB DEMO · iOS SWIFTUI PACKAGE"
+          eyebrow="WEB DEMO · iOS SWIFTUI APP"
           description="Find nearby pharmacies, check live opening hours, and plan a route directly from the results."
           href="https://hiltunenjuho.github.io/nearest-pharmacy-web/"
           preview={
