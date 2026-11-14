@@ -516,46 +516,6 @@ main.production.home-view {
                     content: "";
                 }
             }
-            .projectPreviewComingSoon {
-                min-height: 200px;
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: center;
-                gap: .75rem;
-                padding: 1.5rem;
-                background:
-                    radial-gradient(ellipse at 70% 30%, rgba(176, 38, 255, .36), transparent 58%),
-                    linear-gradient(135deg, #1d1424, #101010 75%);
-                .projectPreviewTitle {
-                    margin: 0;
-                    color: #fff;
-                    font-size: 2rem;
-                }
-                .projectPreviewTitleKnowdium {
-                    font-family: "Honk", system-ui;
-                    font-size: clamp(2.5rem, 5vw, 3.75rem);
-                    font-variation-settings: "MORF" 15, "SHLN" 50;
-                    font-weight: 400;
-                    line-height: 1;
-                    text-shadow: none;
-                }
-                .comingSoonLabel {
-                    padding: .35rem .65rem;
-                    border: 1px solid rgba(255, 215, 0, .5);
-                    border-radius: 999px;
-                    color: var(--primary);
-                    font-family: var(--font-code);
-                    font-size: .75rem;
-                    letter-spacing: .06em;
-                    text-transform: uppercase;
-                }
-                .comingSoonNote {
-                    max-width: 20em;
-                    color: #ddd;
-                    font-size: .9rem;
-                    line-height: 1.4;
-                }
-            }
             .projectCopy {
                 display: flex;
                 flex: 1;
@@ -1007,14 +967,6 @@ main.production.home-view {
         .appSwitcherNameKnowdium {
             font-family: "Honk", system-ui, sans-serif;
             font-size: 1.65rem;
-        }
-        .appSwitcherNotice {
-            margin: 3px 0 5px 78px;
-            color: #d287ff;
-            font-family: "DM Sans", sans-serif;
-            font-size: .72rem;
-            font-weight: 700;
-            letter-spacing: .14em;
         }
     }
     #headerTabsetContainer {

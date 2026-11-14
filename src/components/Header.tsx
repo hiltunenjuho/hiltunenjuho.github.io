@@ -17,7 +17,6 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
   const headerRef = useRef<HTMLElement | null>(null);
   const logoButtonRef = useRef<HTMLButtonElement | null>(null);
   const [appMenuOpen, setAppMenuOpen] = useState(false);
-  const [comingSoonVisible, setComingSoonVisible] = useState(false);
 
   useEffect(() => {
     function updateHeader() {
@@ -82,7 +81,6 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
       }
 
       setAppMenuOpen(false);
-      setComingSoonVisible(false);
       logoButtonRef.current?.focus();
     }
 
@@ -100,7 +98,6 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
           tabIndex={-1}
           onClick={() => {
             setAppMenuOpen(false);
-            setComingSoonVisible(false);
             logoButtonRef.current?.focus();
           }}
         />
@@ -116,7 +113,6 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
           aria-controls="appSwitcherMenu"
           onClick={() => {
             setAppMenuOpen((open) => !open);
-            setComingSoonVisible(false);
           }}
         >
           <img
@@ -158,10 +154,9 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
             />
             <span className="appSwitcherName appSwitcherNamePharmacy">Pharmacy Finder</span>
           </a>
-          <button
+          <a
             className="appSwitcherItem"
-            type="button"
-            onClick={() => setComingSoonVisible(true)}
+            href="https://hiltunenjuho.github.io/knowdium/"
           >
             <img
               className="appSwitcherLogo"
@@ -169,12 +164,7 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
               alt=""
             />
             <span className="appSwitcherName appSwitcherNameKnowdium">knowdium!</span>
-          </button>
-          {comingSoonVisible && (
-            <p className="appSwitcherNotice" role="status">
-              COMING SOON!
-            </p>
-          )}
+          </a>
         </nav>
         <div id="headerTabsetContainer">
           <nav className="tabset" id="headerTabset" aria-label="Main navigation">

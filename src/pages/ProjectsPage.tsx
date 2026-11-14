@@ -58,13 +58,13 @@ const projectSlides = [
     </p>
   </>,
   <>
-    <p className="aboutCardEyebrow">02 / WHAT'S NEXT</p>
+    <p className="aboutCardEyebrow">02 / PLAY AND EXPLORE</p>
     <h2 className="aboutCardTitle">
-      A new trivia game is <span className="yellowText pulsingText">on its way</span>
+      A trivia game for <span className="yellowText pulsingText">curious minds</span>
     </h2>
     <p>
-      Knowdium is an upcoming trivia game built for fun, challenge, and sharing questions with
-      others. Follow its progress on GitHub - The game will be live soon!
+      Knowdium brings quick trivia rounds, multiple game modes, and three interface languages
+      together in a playable web app.
     </p>
   </>,
 ];
@@ -143,17 +143,20 @@ export function ProjectsPage() {
         />
         <ProjectCard
           title="knowdium!"
-          eyebrow="IN DEVELOPMENT"
-          description="An upcoming trivia game built for quick rounds, playful challenge, and sharing questions with others."
-          href="https://github.com/hiltunenjuho/knowdium"
+          eyebrow="WEB TRIVIA GAME"
+          description="Play customizable trivia rounds in Classic, Blitz, or Survival mode."
+          href="https://hiltunenjuho.github.io/knowdium/"
           preview={
-            <div className="projectPreview projectPreviewComingSoon" aria-hidden="true">
-              <span className="comingSoonLabel">Coming soon!</span>
-              <span className="projectPreviewTitle projectPreviewTitleKnowdium">knowdium!</span>
-              <span className="comingSoonNote">A new trivia game is in the works.</span>
+            <div className="projectPreview" aria-hidden="true">
+              <img src="/assets/images/knowdium-home.png" alt="" />
             </div>
           }
           links={[
+            {
+              label: "Live demo",
+              href: "https://hiltunenjuho.github.io/knowdium/",
+              icon: "open_in_new",
+            },
             {
               label: "GitHub",
               href: "https://github.com/hiltunenjuho/knowdium",

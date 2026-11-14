@@ -18,13 +18,13 @@
 
 ## About
 
-This portfolio presents selected software projects, my approach to problem-solving, and ways to get in touch. It is built as a small React and TypeScript application, with reusable components for navigation, content panels, project cards, and carousels. The header includes a branded app switcher for this portfolio and Pharmacy Finder's live web demo; Knowdium is clearly marked as coming soon.
+This portfolio presents selected software projects, my approach to problem-solving, and ways to get in touch. It is built as a small React and TypeScript application, with reusable components for navigation, content panels, project cards, and carousels. The header includes a branded app switcher linking to this portfolio, Pharmacy Finder, and Knowdium.
 
 ## Selected work
 
 - **[Pharmacy Finder](https://hiltunenjuho.github.io/nearest-pharmacy-web/):** a live web demo for finding nearby pharmacies, checking available opening information, and planning a route. The project also includes a SwiftUI package for an iOS host app: [web source](https://github.com/hiltunenjuho/nearest-pharmacy-web) · [iOS package](https://github.com/hiltunenjuho/nearest-pharmacy-ios).
 - **[Portfolio](https://hiltunenjuho.github.io/):** an interactive site for selected work and background, with source in the [portfolio repository](https://github.com/hiltunenjuho/hiltunenjuho.github.io).
-- **[Knowdium](https://github.com/hiltunenjuho/knowdium):** a game-first multiple-choice trivia prototype in development; its live demo is coming soon.
+- **[Knowdium](https://hiltunenjuho.github.io/knowdium/):** a playable multilingual trivia game with three modes, live questions and optional in-browser translation. [Source code](https://github.com/hiltunenjuho/knowdium).
 
 ## Screenshots
 
@@ -36,9 +36,9 @@ This portfolio presents selected software projects, my approach to problem-solvi
 
 <p align="center">
   <img src="./public/assets/images/portfolio-preview.png" alt="Portfolio homepage on desktop" width="49%">
-  <img src="./public/assets/images/knowdium-preview.png" alt="Knowdium trivia prototype showing a question and answer choices" width="49%">
+  <img src="./public/assets/images/knowdium-home.png" alt="Knowdium's English-language desktop home page" width="49%">
 </p>
-<p align="center"><em>Portfolio homepage and an early Knowdium gameplay view.</em></p>
+<p align="center"><em>Portfolio homepage and Knowdium's English-language home page.</em></p>
 
 ## Live website
 
