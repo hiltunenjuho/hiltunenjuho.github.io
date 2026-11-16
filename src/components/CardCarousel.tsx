@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent, ReactNode } from "react";
+import { useSitePreferences } from "../sitePreferences";
 
 interface CardCarouselProps {
   id: string;
@@ -8,6 +9,8 @@ interface CardCarouselProps {
 }
 
 export function CardCarousel({ id, label, cards }: CardCarouselProps) {
+  const { locale } = useSitePreferences();
+  const isFinnish = locale === "fi";
   const [activeIndex, setActiveIndex] = useState(0);
   const [viewportHeight, setViewportHeight] = useState<number>();
   const activeCardRef = useRef<HTMLElement | null>(null);
@@ -86,21 +89,75 @@ export function CardCarousel({ id, label, cards }: CardCarouselProps) {
       className="aboutCarousel cardCarousel"
       id={id}
       role="region"
-      aria-roledescription="carousel"
+      aria-roledescription={isFinnish ? "karuselli" : "carousel"}
       aria-label={label}
     >
-      <div className="cardCarouselIndicators" aria-hidden="true">
-        {cards.map((_, index) => (
-          <span
-            className={`cardCarouselIndicator${index === activeIndex ? " active" : ""}`}
-            key={index}
-          />
-        ))}
+      <div
+        className="aboutCardControls cardCarouselControls"
+        role="group"
+        aria-label={isFinnish ? "Korttien selaus" : "Card navigation"}
+      >
+        <div className="cardCarouselArrowControls">
+          <button
+            className="aboutCardButton cardCarouselButton"
+            type="button"
+            aria-label={isFinnish ? "Edellinen kortti" : "Previous card"}
+            aria-controls={trackId}
+            aria-disabled={activeIndex === 0}
+            disabled={activeIndex === 0}
+            onClick={() => moveToCard(activeIndex - 1)}
+          >
+            <span className="material-symbols-outlined" aria-hidden="true">
+              chevron_backward
+            </span>
+          </button>
+          <button
+            className="aboutCardButton cardCarouselButton"
+            type="button"
+            aria-label={isFinnish ? "Seuraava kortti" : "Next card"}
+            aria-controls={trackId}
+            aria-disabled={activeIndex === cards.length - 1}
+            disabled={activeIndex === cards.length - 1}
+            onClick={() => moveToCard(activeIndex + 1)}
+          >
+            <span className="material-symbols-outlined" aria-hidden="true">
+              chevron_forward
+            </span>
+          </button>
+        </div>
+        <div
+          className="cardCarouselIndicators"
+          role="group"
+          aria-label={isFinnish ? "Valitse kortti" : "Choose a card"}
+        >
+          {cards.map((_, index) => (
+            <button
+              className={`cardCarouselIndicator${index === activeIndex ? " active" : ""}`}
+              key={index}
+              type="button"
+              aria-label={
+                isFinnish
+                  ? `Näytä kortti ${index + 1}`
+                  : `Show card ${index + 1}`
+              }
+              aria-current={index === activeIndex ? "true" : undefined}
+              aria-controls={trackId}
+              onClick={() => moveToCard(index)}
+            />
+          ))}
+        </div>
+        <span className="cardCarouselStatus" aria-live="polite">
+          {activeIndex + 1} / {cards.length}
+        </span>
       </div>
       <div
         className="aboutCardViewport cardCarouselViewport"
         tabIndex={0}
-        aria-label={`${label} cards. Use the arrow keys or swipe to navigate.`}
+        aria-label={
+          isFinnish
+            ? "Selaa kortteja nuolinäppäimillä tai pyyhkäisemällä."
+            : "Use the arrow keys or swipe to browse the cards."
+        }
         style={viewportHeight ? { height: `${viewportHeight}px` } : undefined}
         onKeyDown={handleKeyDown}
         onPointerDown={handlePointerDown}
@@ -121,7 +178,9 @@ export function CardCarousel({ id, label, cards }: CardCarouselProps) {
               key={index}
               ref={index === activeIndex ? activeCardRef : undefined}
               aria-roledescription="slide"
-              aria-label={`${index + 1} of ${cards.length}`}
+              aria-label={
+                isFinnish ? `${index + 1} / ${cards.length}` : `${index + 1} of ${cards.length}`
+              }
               aria-hidden={index !== activeIndex}
               style={{ flexBasis: `${cardWidthPercent}%` }}
             >
@@ -129,39 +188,6 @@ export function CardCarousel({ id, label, cards }: CardCarouselProps) {
             </article>
           ))}
         </div>
-      </div>
-      <div className="aboutCardControls cardCarouselControls" role="group" aria-label={`${label} navigation`}>
-        <div className="cardCarouselArrowControls">
-          <button
-            className="aboutCardButton cardCarouselButton"
-            type="button"
-            aria-label={`Previous ${label.toLowerCase()} card`}
-            aria-controls={trackId}
-            aria-disabled={activeIndex === 0}
-            disabled={activeIndex === 0}
-            onClick={() => moveToCard(activeIndex - 1)}
-          >
-            <span className="material-symbols-outlined" aria-hidden="true">
-              chevron_backward
-            </span>
-          </button>
-          <button
-            className="aboutCardButton cardCarouselButton"
-            type="button"
-            aria-label={`Next ${label.toLowerCase()} card`}
-            aria-controls={trackId}
-            aria-disabled={activeIndex === cards.length - 1}
-            disabled={activeIndex === cards.length - 1}
-            onClick={() => moveToCard(activeIndex + 1)}
-          >
-            <span className="material-symbols-outlined" aria-hidden="true">
-              chevron_forward
-            </span>
-          </button>
-        </div>
-        <span className="cardCarouselStatus" aria-live="polite">
-          {activeIndex + 1} / {cards.length}
-        </span>
       </div>
     </div>
   );

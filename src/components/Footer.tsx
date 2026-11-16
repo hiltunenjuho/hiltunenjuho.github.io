@@ -1,15 +1,19 @@
+import { useSitePreferences } from "../sitePreferences";
+
 export function Footer() {
+  const { locale } = useSitePreferences();
+  const isFinnish = locale === "fi";
   return (
     <footer id="siteFooter">
       <div id="footerMain">
         <div className="footerSection" id="footerRight">
-          <p className="footerHeading">CONTACT</p>
+          <p className="footerHeading">{isFinnish ? "OTA YHTEYTTÄ" : "GET IN TOUCH"}</p>
           <div className="footerLinks">
             <a href="mailto:juho.m.hiltunen@gmail.com">
               <svg className="footerIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V9.435L12 14.19l-6.545-4.755v11.567H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.045 2.337-3.18 3.927-1.994L12 9.38l8.073-5.917C21.663 2.277 24 3.412 24 5.457z" />
               </svg>
-              Email
+              {isFinnish ? "Sähköposti" : "Email"}
             </a>
             <a href="https://www.linkedin.com/in/hiltunenjuho/" target="_blank" rel="noopener noreferrer">
               <svg className="footerIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -27,8 +31,9 @@ export function Footer() {
         </div>
         <div className="footerSection" id="footerLeft">
           <p className="footerCopyright">
-            © {new Date().getFullYear()} Juho M. Hiltunen. All rights reserved for personal content
-            and branding.
+            {isFinnish
+              ? `© ${new Date().getFullYear()} Juho M. Hiltunen.`
+              : `© ${new Date().getFullYear()} Juho M. Hiltunen.`}
           </p>
           <a
             className="footerLicense"
@@ -36,11 +41,11 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Website code licensed under MIT
+            {isFinnish ? "Sivuston koodi on MIT-lisensoitu" : "Site code is MIT-licensed"}
           </a>
         </div>
-        <a className="footerBackToTop" href="#mainHeader">
-          Back to top ↑
+        <a className="footerBackToTop" href="#mainHeaderSlot">
+          {isFinnish ? "Ylös ↑" : "Back to top ↑"}
         </a>
       </div>
     </footer>

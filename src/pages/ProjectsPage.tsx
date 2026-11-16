@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { CardCarousel } from "../components/CardCarousel";
+import { TechBadge } from "../components/TechBadge";
+import { useSitePreferences } from "../sitePreferences";
 
 interface ProjectLink {
   label: string;
@@ -7,16 +9,37 @@ interface ProjectLink {
   icon: string;
 }
 
+type TechnologyCategory = "frontend" | "backend" | "other";
+
+type ProjectTechnologies = Record<TechnologyCategory, string[]>;
+
 interface ProjectCardProps {
   title: string;
   eyebrow: string;
   description: string;
+  technologies: ProjectTechnologies;
   href: string;
   preview: ReactNode;
   links: ProjectLink[];
 }
 
-function ProjectCard({ title, eyebrow, description, href, preview, links }: ProjectCardProps) {
+const technologyCategoryLabels: Record<TechnologyCategory, { fi: string; en: string }> = {
+  frontend: { fi: "Frontend", en: "Frontend" },
+  backend: { fi: "Backend", en: "Backend" },
+  other: { fi: "Muut", en: "Other" },
+};
+
+function ProjectCard({
+  title,
+  eyebrow,
+  description,
+  technologies,
+  href,
+  preview,
+  links,
+}: ProjectCardProps) {
+  const { locale } = useSitePreferences();
+  const isFinnish = locale === "fi";
   return (
     <article className="projectItem">
       <a
@@ -24,13 +47,40 @@ function ProjectCard({ title, eyebrow, description, href, preview, links }: Proj
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={`Open ${title}`}
+        aria-label={isFinnish ? `Avaa ${title}` : `Open ${title}`}
       />
       {preview}
       <div className="projectCopy">
         <h2 className="projectTitle">{title}</h2>
         <p className="projectEyebrow">{eyebrow}</p>
         <p>{description}</p>
+        <div className="projectTechGroups">
+          {(Object.keys(technologyCategoryLabels) as TechnologyCategory[])
+            .filter((category) => technologies[category].length > 0)
+            .map((category) => (
+              <div className="projectTechGroup" key={category}>
+              <h3>
+                {isFinnish
+                  ? technologyCategoryLabels[category].fi
+                  : technologyCategoryLabels[category].en}
+              </h3>
+                <ul
+                  className="projectTechBadges"
+                aria-label={
+                  isFinnish
+                    ? `${technologyCategoryLabels[category].fi}-teknologiat`
+                    : `${technologyCategoryLabels[category].en} technologies`
+                }
+                >
+                  {technologies[category].map((technology) => (
+                    <li key={technology}>
+                      <TechBadge technology={technology} compact />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+        </div>
         <div className="projectLinks">
           {links.map(({ label, href, icon }) => (
             <a href={href} key={label} target="_blank" rel="noopener noreferrer">
@@ -46,41 +96,109 @@ function ProjectCard({ title, eyebrow, description, href, preview, links }: Proj
   );
 }
 
-const projectSlides = [
-  <>
-    <p className="aboutCardEyebrow">01 / SELECTED WORK</p>
-    <h2 className="aboutCardTitle">
-      Software built to make work <span className="yellowText pulsingText">easier</span>
-    </h2>
-    <p>
-      A selection of practical software, product experiments, and ideas in progress. Explore the
-      live demos and the code behind them.
-    </p>
-  </>,
-  <>
-    <p className="aboutCardEyebrow">02 / PLAY AND EXPLORE</p>
-    <h2 className="aboutCardTitle">
-      A trivia game for <span className="yellowText pulsingText">curious minds</span>
-    </h2>
-    <p>
-      Knowdium brings quick trivia rounds, multiple game modes, and three interface languages
-      together in a playable web app.
-    </p>
-  </>,
-];
-
 export function ProjectsPage() {
+  const { locale } = useSitePreferences();
+  const isFinnish = locale === "fi";
+  const projectSlides = isFinnish
+    ? [
+        <>
+          <p className="aboutCardEyebrow">01 / PROJEKTEJA</p>
+          <h2 className="aboutCardTitle">
+            Ohjelmistoja <span className="yellowText pulsingText">arjen tarpeisiin</span>
+          </h2>
+          <p>
+            Kokeile projekteja, kurkista koodiin ja näe, mitä olen rakentanut. Mukana on valmiita
+            sovelluksia ja uusia kokeiluja.
+          </p>
+        </>,
+        <>
+          <p className="aboutCardEyebrow">02 / KOKEILE KNOWDIUMIA</p>
+          <h2 className="aboutCardTitle">
+            Pelaa, opi ja <span className="yellowText pulsingText">haasta itsesi</span>
+          </h2>
+          <p>
+            Nopeat kierrokset, kolme pelitilaa ja käyttöliittymä kolmella kielellä. Valitse pelitila
+            ja katso, kuinka pitkälle pääset.
+          </p>
+        </>,
+      ]
+    : [
+        <>
+          <p className="aboutCardEyebrow">01 / PROJECTS</p>
+          <h2 className="aboutCardTitle">
+            Software for <span className="yellowText pulsingText">everyday needs</span>
+          </h2>
+          <p>
+            Try the projects, take a look at the code, and see what I’ve been building. You’ll find
+            finished apps alongside new experiments.
+          </p>
+        </>,
+        <>
+          <p className="aboutCardEyebrow">02 / TRY KNOWDIUM</p>
+          <h2 className="aboutCardTitle">
+            Play, learn, and <span className="yellowText pulsingText">challenge yourself</span>
+          </h2>
+          <p>
+            Quick rounds, three game modes, and an interface in three languages. Pick a mode and see
+            how far you can get.
+          </p>
+        </>,
+      ];
+
   return (
     <>
-      <h1 className="sectionTitle">
-        Selected projects
-      </h1>
-      <CardCarousel id="projectsCarousel" label="Projects" cards={projectSlides} />
-      <section className="projectShowcase" aria-label="Selected projects">
+      <h1 className="sectionTitle">{isFinnish ? "Projektit" : "Projects"}</h1>
+      <CardCarousel
+        id="projectsCarousel"
+        label={isFinnish ? "Projektien esittelykortit" : "Project intro cards"}
+        cards={projectSlides}
+      />
+      <section className="projectShowcase" aria-label={isFinnish ? "Projektit ja demot" : "Projects and demos"}>
+        <ProjectCard
+          title="knowdium!"
+          eyebrow={isFinnish ? "VERKKOTIETOVISAPELI" : "WEB TRIVIA GAME"}
+          description={
+            isFinnish
+              ? "Luo omat tietovisakierroksesi ja pelaa Classic-, Blitz- tai Survival-tilassa."
+              : "Create your own trivia rounds and play in Classic, Blitz, or Survival mode."
+          }
+          technologies={{
+            frontend: ["React", "TypeScript", "Vite", "Transformers.js", "Web Workers"],
+            backend: ["REST APIs"],
+            other: [],
+          }}
+          href="https://hiltunenjuho.github.io/knowdium/"
+          preview={
+            <div className="projectPreview" aria-hidden="true">
+              <img src="/assets/images/knowdium-home.png" alt="" />
+            </div>
+          }
+          links={[
+            {
+              label: "Live demo",
+              href: "https://hiltunenjuho.github.io/knowdium/",
+              icon: "open_in_new",
+            },
+            {
+              label: "GitHub",
+              href: "https://github.com/hiltunenjuho/knowdium",
+              icon: "code",
+            },
+          ]}
+        />
         <ProjectCard
           title="Pharmacy Finder"
-          eyebrow="WEB DEMO · iOS SWIFTUI APP"
-          description="Find nearby pharmacies, check live opening hours, and plan a route directly from the results."
+          eyebrow={"WEB APP & iOS APP (SWIFTUI)"}
+          description={
+            isFinnish
+              ? "Löydä lähellä olevat apteekit, tarkista aukioloajat ja avaa reitti suoraan tuloksista."
+              : "Find nearby pharmacies, check opening hours, and get directions straight from the results."
+          }
+          technologies={{
+            frontend: ["React", "TypeScript", "Vite"],
+            backend: ["Cloudflare Workers"],
+            other: ["Swift", "SwiftUI", "Core Location", "Google Places API", "GitHub Actions"],
+          }}
           href="https://hiltunenjuho.github.io/nearest-pharmacy-web/"
           preview={
             <div className="projectPreview projectPreviewSplit" aria-hidden="true">
@@ -119,8 +237,17 @@ export function ProjectsPage() {
         />
         <ProjectCard
           title="Juho Hiltunen"
-          eyebrow="PERSONAL PORTFOLIO (THIS SITE)"
-          description="An interactive portfolio for selected work, background, and ways to get in touch."
+          eyebrow={isFinnish ? "PORTFOLIOSIVUSTO" : "PORTFOLIO WEBSITE"}
+          description={
+            isFinnish
+              ? "Tämä sivusto esittelee projektini, osaamiseni ja tavat ottaa yhteyttä."
+              : "A quick look at my projects, what I do, and how to get in touch."
+          }
+          technologies={{
+            frontend: ["React", "TypeScript", "Vite", "HTML", "CSS"],
+            backend: [],
+            other: ["GitHub Pages"],
+          }}
           href="https://hiltunenjuho.github.io/"
           preview={
             <div className="projectPreview" aria-hidden="true">
@@ -130,36 +257,13 @@ export function ProjectsPage() {
           }
           links={[
             {
-              label: "Live site",
+              label: isFinnish ? "Avaa sivusto" : "Visit site",
               href: "https://hiltunenjuho.github.io/",
               icon: "open_in_new",
             },
             {
               label: "GitHub",
               href: "https://github.com/hiltunenjuho/hiltunenjuho.github.io",
-              icon: "code",
-            },
-          ]}
-        />
-        <ProjectCard
-          title="knowdium!"
-          eyebrow="WEB TRIVIA GAME"
-          description="Play customizable trivia rounds in Classic, Blitz, or Survival mode."
-          href="https://hiltunenjuho.github.io/knowdium/"
-          preview={
-            <div className="projectPreview" aria-hidden="true">
-              <img src="/assets/images/knowdium-home.png" alt="" />
-            </div>
-          }
-          links={[
-            {
-              label: "Live demo",
-              href: "https://hiltunenjuho.github.io/knowdium/",
-              icon: "open_in_new",
-            },
-            {
-              label: "GitHub",
-              href: "https://github.com/hiltunenjuho/knowdium",
               icon: "code",
             },
           ]}

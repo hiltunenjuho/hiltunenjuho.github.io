@@ -1,69 +1,169 @@
 import { CardCarousel } from "../components/CardCarousel";
-
-const aboutCards = [
-  <>
-    <p className="aboutCardEyebrow">01 / MY PATH</p>
-    <h2 className="aboutCardTitle">
-      A <span className="yellowText pulsingText">non-traditional path</span> into software
-    </h2>
-    <p>
-      I came to software development through practical problem-solving. In business workflows, I saw
-      repeated tasks, scattered information, and interfaces that made simple work harder than it
-      needed to be.
-    </p>
-    <p>
-      That led me to build tools and integrations that remove friction and make information easier
-      to use. Seeing those changes help people do their work better turned a long-standing interest
-      into a clear career goal.
-    </p>
-  </>,
-  <>
-    <p className="aboutCardEyebrow">02 / WHAT DRIVES ME</p>
-    <h2 className="aboutCardTitle">
-      Software is <span className="yellowText pulsingText">problem-solving</span> and craft
-    </h2>
-    <p>
-      Software development brings structured problem-solving and creativity together. I enjoy taking
-      an idea from the first question to a useful, working product - and learning along the way.
-    </p>
-  </>,
-  <>
-    <p className="aboutCardEyebrow">03 / HOW I WORK</p>
-    <h2 className="aboutCardTitle">
-      Start with the <span className="yellowText pulsingText">real problem</span>
-    </h2>
-    <p>
-      I start by understanding how people work and where a process becomes unclear or repetitive.
-      From there, I build a focused solution around the people who will use it.
-    </p>
-    <p>
-      I care about making useful information easier to find, reducing repetitive steps, and improving
-      the experience - not just choosing a technology.
-    </p>
-  </>,
-  <>
-    <p className="aboutCardEyebrow">04 / THE GOAL</p>
-    <h2 className="aboutCardTitle">
-      Building toward <span className="yellowText pulsingText">what's next</span>
-    </h2>
-    <p>
-      I'm looking for a software development role where I can contribute, keep learning, and build
-      products people rely on.
-    </p>
-    <p>
-      I'm continuing to deepen my practical skills, with particular interest in useful web apps,
-      integrations, and thoughtful applications of AI.
-    </p>
-  </>,
-];
+import { TechBadge } from "../components/TechBadge";
+import { useSitePreferences } from "../sitePreferences";
 
 export function AboutPage() {
+  const { locale } = useSitePreferences();
+  const isFinnish = locale === "fi";
+  const aboutCards = isFinnish
+    ? [
+        <>
+          <p className="aboutCardEyebrow">01 / FULL STACK</p>
+          <h2 className="aboutCardTitle">
+            Käyttöliittymästä <span className="yellowText pulsingText">taustapalveluihin</span>
+          </h2>
+          <p>
+            Rakennan kokonaisia web-ratkaisuja: käyttöliittymiä, rajapintoja, taustapalveluita ja
+            dataa käsitteleviä toimintoja.
+          </p>
+          <p>
+            React, TypeScript, Node.js ja tietokannat ovat osa työkalupakkiani.
+          </p>
+        </>,
+        <>
+          <p className="aboutCardEyebrow">02 / LIIKETOIMINTAYMMÄRRYS</p>
+          <h2 className="aboutCardTitle">
+            Tekniikka alkaa <span className="yellowText pulsingText">oikeasta tarpeesta</span>
+          </h2>
+          <p>
+            Ymmärrän asiakkaan tarpeet, työnkulut ja liiketoiminnan tavoitteet. Sen pohjalta rakennan
+            ratkaisuja, jotka toimivat teknisesti ja helpottavat oikeaa arkea.
+          </p>
+          <p>
+            Tiedän myös, että hyvä ratkaisu syntyy siitä, että ymmärtää ensin, miksi sitä tarvitaan.
+          </p>
+        </>,
+        <>
+          <p className="aboutCardEyebrow">03 / MYYNTI JA VIESTINTÄ</p>
+          <h2 className="aboutCardTitle">
+            Osaan kuunnella — ja <span className="yellowText pulsingText">kertoa hyödyt.</span>
+          </h2>
+          <p>
+            Myynti- ja asiakastyö on opettanut kysymään oikeat kysymykset, tunnistamaan tarpeet ja
+            selittämään ratkaisut ymmärrettävästi.
+          </p>
+          <p>
+            Yhdistän teknisen toteutuksen ja asiakkaan näkökulman — vahva pohja myös konsultointiin.
+          </p>
+        </>,
+        <>
+          <p className="aboutCardEyebrow">04 / INTEGRAATIOT JA AI</p>
+          <h2 className="aboutCardTitle">
+            Yhdistän järjestelmät ja <span className="yellowText pulsingText">sujuvoitan työtä.</span>
+          </h2>
+          <p>
+            Rakennan API-integraatioita ja automatisoin toistuvia prosesseja. Hyödynnän AI:ta, kun
+            siitä on konkreettista apua datalle, työkaluille tai työnkuluille.
+          </p>
+          <p>
+            Tavoitteena ei ole hype, vaan ratkaisu, joka helpottaa arkea.
+          </p>
+        </>,
+      ]
+    : [
+        <>
+          <p className="aboutCardEyebrow">01 / FULL STACK</p>
+          <h2 className="aboutCardTitle">
+            From the interface to the <span className="yellowText pulsingText">backend</span>
+          </h2>
+          <p>
+            I build complete web solutions: user interfaces, APIs, backend services, and data
+            workflows.
+          </p>
+          <p>
+            React, TypeScript, Node.js, and databases are part of my toolkit.
+          </p>
+        </>,
+        <>
+          <p className="aboutCardEyebrow">02 / BUSINESS UNDERSTANDING</p>
+          <h2 className="aboutCardTitle">
+            Good software starts with <span className="yellowText pulsingText">a real need</span>
+          </h2>
+          <p>
+            I understand customer needs, day-to-day workflows, and business goals. That helps me
+            build solutions that work technically and make a real difference.
+          </p>
+          <p>
+            Before choosing how to build, I want to understand why the solution is needed.
+          </p>
+        </>,
+        <>
+          <p className="aboutCardEyebrow">03 / SALES & COMMUNICATION</p>
+          <h2 className="aboutCardTitle">
+            I listen first — then <span className="yellowText pulsingText">make the value clear.</span>
+          </h2>
+          <p>
+            My sales and customer-facing experience has taught me to ask good questions, spot needs,
+            and explain solutions in plain language.
+          </p>
+          <p>
+            I connect the technical work to the customer’s perspective — a strong fit for consulting,
+            too.
+          </p>
+        </>,
+        <>
+          <p className="aboutCardEyebrow">04 / INTEGRATIONS & AI</p>
+          <h2 className="aboutCardTitle">
+            I connect systems and <span className="yellowText pulsingText">make work flow.</span>
+          </h2>
+          <p>
+            I build API integrations and automate repetitive workflows. I use AI where it can make a
+            practical difference to data, tools, or the way people work.
+          </p>
+          <p>
+            The goal isn’t hype. It’s a solution that makes someone’s work easier.
+          </p>
+        </>,
+      ];
+
   return (
     <>
-      <h1 className="sectionTitle">
-        About me
-      </h1>
-      <CardCarousel id="aboutCarousel" label="About Juho" cards={aboutCards} />
+      <h1 className="sectionTitle">{isFinnish ? "Minusta" : "About me"}</h1>
+      <CardCarousel
+        id="aboutCarousel"
+        label={isFinnish ? "Minusta kertovat kortit" : "About me cards"}
+        cards={aboutCards}
+      />
+      <section className="techStackSection sectionContainer" aria-labelledby="techStackTitle">
+        <h2 className="techStackTitle" id="techStackTitle">Tech Stack</h2>
+        <p className="techStackDescription">
+          {isFinnish
+            ? "Käytännön työkaluni web-kehitykseen, integraatioihin, automaatioon ja AI-ratkaisuihin."
+            : "My hands-on toolkit for web development, integrations, automation, and applied AI."}
+        </p>
+        <ul className="techBadgeList" aria-label="Tech Stack">
+          {[
+            "React",
+            "TypeScript",
+            "JavaScript",
+            "Node.js",
+            "Python",
+            "SQL",
+            "PostgreSQL",
+            "Docker",
+            "LLM integrations",
+            "REST APIs",
+            "Swift",
+            "SwiftUI",
+            "HTML",
+            "CSS",
+            "CI/CD",
+            "Vite",
+            "Git",
+            "GitHub",
+            "npm",
+            "JSON",
+            "Web APIs",
+            "Browser extensions",
+            "AI-assisted development",
+            "Agentic development",
+          ].map((technology) => (
+            <li key={technology}>
+              <TechBadge technology={technology} />
+            </li>
+          ))}
+        </ul>
+      </section>
       <a
         className="aboutCvDownload"
         href="/assets/cv-juho-hiltunen.pdf"
@@ -72,7 +172,7 @@ export function AboutPage() {
         <span className="material-symbols-outlined" aria-hidden="true">
           download
         </span>
-        Download CV
+        {isFinnish ? "Lataa CV" : "Download CV"}
       </a>
     </>
   );

@@ -20,6 +20,8 @@
 
 This portfolio presents selected software projects, my approach to problem-solving, and ways to get in touch. It is built as a small React and TypeScript application, with reusable components for navigation, content panels, project cards, and carousels. The header includes a branded app switcher linking to this portfolio, Pharmacy Finder, and Knowdium.
 
+The site supports English and Finnish, with Finnish selected automatically for Finnish-language browsers and English for other languages. Visitors can switch languages at any time using the header control, including on mobile. The portfolio always uses a dark theme. Carousel cards can be navigated with the larger arrow buttons, clickable position indicators, keyboard arrows, or touch swipes.
+
 ## Selected work
 
 - **[Pharmacy Finder](https://hiltunenjuho.github.io/nearest-pharmacy-web/):** a live web demo for finding nearby pharmacies, checking available opening information, and planning a route. The project also includes a SwiftUI iOS app: [web source](https://github.com/hiltunenjuho/nearest-pharmacy-web) · [iOS source](https://github.com/hiltunenjuho/nearest-pharmacy-ios).

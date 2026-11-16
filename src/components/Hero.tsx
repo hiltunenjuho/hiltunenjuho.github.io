@@ -1,12 +1,14 @@
 import { useLayoutEffect, useRef } from "react";
-import type { KeyboardEvent } from "react";
+import type { KeyboardEvent, TransitionEvent } from "react";
 import type { PageId } from "../types";
 
 interface HeroProps {
   onNavigate: (page: PageId) => void;
+  exitMinHeight: number | null;
+  onLayoutTransitionEnd: (event: TransitionEvent<HTMLDivElement>) => void;
 }
 
-export function Hero({ onNavigate }: HeroProps) {
+export function Hero({ onNavigate, exitMinHeight, onLayoutTransitionEnd }: HeroProps) {
   const lastNameRef = useRef<HTMLSpanElement | null>(null);
 
   useLayoutEffect(() => {
@@ -46,7 +48,12 @@ export function Hero({ onNavigate }: HeroProps) {
   }
 
   return (
-    <div className="heroOuterContainer" id="heroElement">
+    <div
+      className="heroOuterContainer"
+      id="heroElement"
+      style={exitMinHeight === null ? undefined : { minHeight: `${exitMinHeight}px` }}
+      onTransitionEnd={onLayoutTransitionEnd}
+    >
       <div className="heroInnerContainer" id="heroContainer">
         <h1 className="heroName">
           <span className="namePart" id="firstName">
@@ -58,7 +65,7 @@ export function Hero({ onNavigate }: HeroProps) {
         </h1>
         <div id="heroSubText">
           <span className="typedTextReveal">
-            <span className="typedText" id="typedText">
+            <span className="typedText" id="typedText" lang="en">
               // i{" "}
               <span
                 id="purpleTypedText"

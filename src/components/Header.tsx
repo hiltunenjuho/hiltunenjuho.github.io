@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { useSitePreferences } from "../sitePreferences";
+import type { Locale } from "../sitePreferences";
 import type { PageId } from "../types";
 
 interface HeaderProps {
@@ -6,14 +8,42 @@ interface HeaderProps {
   onNavigate: (page: PageId) => void;
 }
 
-const navigationItems: { page: PageId; label: string; icon: string }[] = [
-  { page: "home", label: "Home", icon: "home" },
-  { page: "about", label: "About", icon: "info" },
-  { page: "projects", label: "Projects", icon: "folder_open" },
-  { page: "contact", label: "Contact", icon: "alternate_email" },
+const navigationItems: { page: PageId; icon: string }[] = [
+  { page: "home", icon: "home" },
+  { page: "about", icon: "info" },
+  { page: "projects", icon: "folder_open" },
+  { page: "contact", icon: "alternate_email" },
 ];
 
+interface PreferenceTogglesProps {
+  locale: Locale;
+  setLocale: (locale: Locale) => void;
+}
+
+function PreferenceToggles({ locale, setLocale }: PreferenceTogglesProps) {
+  const isFinnish = locale === "fi";
+
+  return (
+    <>
+      <button
+        className={`headerPreferenceButton headerLanguageButton${isFinnish ? " is-finnish" : ""}`}
+        type="button"
+        role="switch"
+        aria-checked={isFinnish}
+        aria-label={isFinnish ? "Vaihda englannin kieleen" : "Switch to Finnish"}
+        onClick={() => setLocale(isFinnish ? "en" : "fi")}
+      >
+        <span>EN</span>
+        <span>FI</span>
+        <span className="preferenceToggleThumb" aria-hidden="true" />
+      </button>
+    </>
+  );
+}
+
 export function Header({ activePage, onNavigate }: HeaderProps) {
+  const { locale, setLocale } = useSitePreferences();
+  const isFinnish = locale === "fi";
   const headerRef = useRef<HTMLElement | null>(null);
   const logoButtonRef = useRef<HTMLButtonElement | null>(null);
   const [appMenuOpen, setAppMenuOpen] = useState(false);
@@ -47,10 +77,13 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
         ? 22
         : Math.min(topHeight * 0.65, contentWidth * 0.065);
       const iconSize = originalIconSize * (height / topHeight);
+      const tabIconSize = isMobile ? 22 : 20 + 8 * (1 - progress);
+      const activeIconScale = (tabIconSize + 16) / tabIconSize;
 
       header.style.width = `${width}px`;
       header.style.setProperty("--mainHeaderHeight", `${height}px`);
       header.style.setProperty("--tabIconSize", `${iconSize}px`);
+      header.style.setProperty("--headerActiveIconScale", `${activeIconScale}`);
       header.style.setProperty("--headerFillOpacity", `${1 - progress}`);
       header.style.setProperty("--headerActiveIconProgress", `${progress * 100}%`);
       header.style.setProperty("--headerBorderWidth", `${progress * 2}px`);
@@ -94,7 +127,7 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
         <button
           type="button"
           className="appSwitcherBackdrop"
-          aria-label="Close application menu"
+          aria-label={isFinnish ? "Sulje sovellusvalikko" : "Close application menu"}
           tabIndex={-1}
           onClick={() => {
             setAppMenuOpen(false);
@@ -102,13 +135,18 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
           }}
         />
       )}
+      <div id="mainHeaderSlot">
       <header ref={headerRef} id="mainHeader">
         <button
           ref={logoButtonRef}
           id="logo"
           type="button"
           className="appSwitcherToggle"
-          aria-label={appMenuOpen ? "Close application menu" : "Open application menu"}
+          aria-label={
+            appMenuOpen
+              ? isFinnish ? "Sulje sovellusvalikko" : "Close application menu"
+              : isFinnish ? "Avaa sovellusvalikko" : "Open application menu"
+          }
           aria-expanded={appMenuOpen}
           aria-controls="appSwitcherMenu"
           onClick={() => {
@@ -126,13 +164,13 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
             <svg viewBox="0 0 16 16">
               <path d="m4 10 4-4 4 4" />
             </svg>
-            <span>Try my other apps!</span>
+            <span>{isFinnish ? "Tutustu muihin projekteihini" : "Explore my other projects"}</span>
           </div>
         )}
         <nav
           className="appSwitcherMenu"
           id="appSwitcherMenu"
-          aria-label="Applications"
+          aria-label={isFinnish ? "Sovellukset" : "Applications"}
           hidden={!appMenuOpen}
         >
           <a
@@ -141,7 +179,9 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
             aria-current="page"
           >
             <img className="appSwitcherLogo" src="/assets/images/logo.svg" alt="" />
-            <span className="appSwitcherName appSwitcherNamePortfolio">Portfolio Website</span>
+            <span className="appSwitcherName appSwitcherNamePortfolio">
+              {isFinnish ? "Portfolio" : "Portfolio"}
+            </span>
           </a>
           <a
             className="appSwitcherItem"
@@ -167,9 +207,16 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
           </a>
         </nav>
         <div id="headerTabsetContainer">
-          <nav className="tabset" id="headerTabset" aria-label="Main navigation">
-            {navigationItems.map(({ page, label, icon }) => {
+          <nav
+            className="tabset"
+            id="headerTabset"
+            aria-label={isFinnish ? "Päänavigaatio" : "Main navigation"}
+          >
+            {navigationItems.map(({ page, icon }) => {
               const isActive = page === activePage;
+              const label = isFinnish
+                ? { home: "Etusivu", about: "Minusta", projects: "Projektit", contact: "Yhteys" }[page]
+                : { home: "Home", about: "About", projects: "Projects", contact: "Contact" }[page];
 
               return (
                 <button
@@ -184,12 +231,20 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
                   <span className="material-symbols-outlined" aria-hidden="true">
                     {icon}
                   </span>
+                  <span className="tabLabel" aria-hidden="true">{label}</span>
                 </button>
               );
             })}
           </nav>
         </div>
+        <div className="headerPreferences" role="group" aria-label={isFinnish ? "Sivuston asetukset" : "Site preferences"}>
+          <PreferenceToggles
+            locale={locale}
+            setLocale={setLocale}
+          />
+        </div>
       </header>
+      </div>
     </>
   );
 }
