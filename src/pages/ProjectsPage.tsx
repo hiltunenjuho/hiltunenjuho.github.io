@@ -104,21 +104,27 @@ export function ProjectsPage() {
         <>
           <p className="aboutCardEyebrow">01 / PROJEKTEJA</p>
           <h2 className="aboutCardTitle">
-            Ohjelmistoja <span className="yellowText pulsingText">arjen tarpeisiin</span>
+            Täältä löydät <span className="yellowText pulsingText">live demot</span>
           </h2>
           <p>
-            Kokeile projekteja, kurkista koodiin ja näe, mitä olen rakentanut. Mukana on valmiita
+            Paras ja odotetuin osa porftoliota! Joten, turhat höpinät sikseen.
+          </p>
+          <p>
+            Kokeile demoja, kurkista koodiin ja näe, mitä olen rakentanut. Mukana on valmiita
             sovelluksia ja uusia kokeiluja.
           </p>
         </>,
         <>
-          <p className="aboutCardEyebrow">02 / KOKEILE KNOWDIUMIA</p>
+          <p className="aboutCardEyebrow">02 / LISÄÄ ON TULOSSA</p>
           <h2 className="aboutCardTitle">
-            Pelaa, opi ja <span className="yellowText pulsingText">haasta itsesi</span>
+            Lisää projekteja <span className="yellowText pulsingText">tulossa pian!</span>
           </h2>
           <p>
-            Nopeat kierrokset, kolme pelitilaa ja käyttöliittymä kolmella kielellä. Valitse pelitila
-            ja katso, kuinka pitkälle pääset.
+            Rakennan jatkuvasti lisää, ideoita on valtava määrä! Julkaisen mielenkiintoisia projekteja
+            pian, joten pysythän kuulolla!
+          </p>
+          <p>
+            Sitä odotellessa - kokeilitko jo Knowdiumin Blitz-modea?
           </p>
         </>,
       ]
@@ -126,21 +132,27 @@ export function ProjectsPage() {
         <>
           <p className="aboutCardEyebrow">01 / PROJECTS</p>
           <h2 className="aboutCardTitle">
-            Software for <span className="yellowText pulsingText">everyday needs</span>
+            The corner of <span className="yellowText pulsingText">live demos</span>
           </h2>
           <p>
-            Try the projects, take a look at the code, and see what I’ve been building. You’ll find
-            finished apps alongside new experiments.
+            The best and sweetest part of a portfolio! So, less talk, more action.
+          </p>
+          <p>
+            Try out the demos, take a look at the code and see, what I've built. Both ready apps and
+            new experiments are included.
           </p>
         </>,
         <>
-          <p className="aboutCardEyebrow">02 / TRY KNOWDIUM</p>
+          <p className="aboutCardEyebrow">02 / MORE ON THE WAY</p>
           <h2 className="aboutCardTitle">
-            Play, learn, and <span className="yellowText pulsingText">challenge yourself</span>
+            More projects <span className="yellowText pulsingText">coming soon!</span>
           </h2>
           <p>
-            Quick rounds, three game modes, and an interface in three languages. Pick a mode and see
-            how far you can get.
+            I'm constantly building more, there are so many ideas! I will release interesting
+            projects soon, so stay tuned!
+          </p>
+          <p>
+            In the meantime - did you try the Blitz mode on Knowdium already?
           </p>
         </>,
       ];
@@ -156,7 +168,7 @@ export function ProjectsPage() {
       <section className="projectShowcase" aria-label={isFinnish ? "Projektit ja demot" : "Projects and demos"}>
         <ProjectCard
           title="knowdium!"
-          eyebrow={isFinnish ? "VERKKOTIETOVISAPELI" : "WEB TRIVIA GAME"}
+          eyebrow={isFinnish ? "VERKKOTRIVIAPELI" : "WEB TRIVIA GAME"}
           description={
             isFinnish
               ? "Luo omat tietovisakierroksesi ja pelaa Classic-, Blitz- tai Survival-tilassa."
@@ -191,8 +203,8 @@ export function ProjectsPage() {
           eyebrow={"WEB APP & iOS APP (SWIFTUI)"}
           description={
             isFinnish
-              ? "Löydä lähellä olevat apteekit, tarkista aukioloajat ja avaa reitti suoraan tuloksista."
-              : "Find nearby pharmacies, check opening hours, and get directions straight from the results."
+              ? "Löydä lähimmät apteekit, tarkista aukioloajat ja avaa reitti suoraan tuloksista."
+              : "Find nearest pharmacies, check opening hours, and get directions straight from the results."
           }
           technologies={{
             frontend: ["React", "TypeScript", "Vite"],

@@ -86,7 +86,7 @@ export function HomeHighlights({ onNavigate }: HomeHighlightsProps) {
         <div className="homeHighlightCopy">
           <p className="homeHighlightEyebrow">{isFinnish ? "02 / PROJEKTIT" : "02 / PROJECTS"}</p>
           <h2>
-            {isFinnish ? "Ohjelmistoja, jotka helpottavat työtä" : "Software that makes work easier"}
+            {isFinnish ? "Valittuja ohjelmistoprojekteja" : "Selected software projects"}
             <span className="yellowText">.</span>
           </h2>
           <p>
@@ -127,7 +127,7 @@ export function HomeHighlights({ onNavigate }: HomeHighlightsProps) {
           <span className="homeHighlightIconLabel">{isFinnish ? "YHTEYS" : "CONTACT"}</span>
         </button>
         <div className="homeHighlightCopy">
-          <p className="homeHighlightEyebrow">{isFinnish ? "03 / JUTELLAANKO?" : "03 / LET'S TALK"}</p>
+          <p className="homeHighlightEyebrow">{isFinnish ? "03 / JUTELLAAN!" : "03 / LET'S TALK!"}</p>
           <h2>{isFinnish ? "Onko mielessäsi idea tai projekti? Jutellaan." : "Have an idea or project in mind? Let's talk."}</h2>
           <p>
             {isFinnish
