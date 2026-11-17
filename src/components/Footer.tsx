@@ -44,7 +44,19 @@ export function Footer() {
             {isFinnish ? "Sivuston koodi on MIT-lisensoitu" : "Site code is MIT-licensed"}
           </a>
         </div>
-        <a className="footerBackToTop" href="#mainHeaderSlot">
+        <a
+          className="footerBackToTop"
+          href="#mainHeaderSlot"
+          onClick={(event) => {
+            event.preventDefault();
+            window.scrollTo({
+              top: 0,
+              behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                ? "auto"
+                : "smooth",
+            });
+          }}
+        >
           {isFinnish ? "Ylös ↑" : "Back to top ↑"}
         </a>
       </div>

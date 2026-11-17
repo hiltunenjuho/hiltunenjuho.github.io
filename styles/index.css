@@ -230,6 +230,24 @@ main.production.about-view #heroElement {
     text-shadow: none;
     font-weight: 700;
     filter: none;
+    animation: pulsingTextGlow 3.2s ease-in-out infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+    }
+}
+
+@keyframes pulsingTextGlow {
+    0%, 100% {
+        color: var(--primary);
+        opacity: .88;
+        text-shadow: 0 0 0 rgba(255, 215, 0, 0);
+    }
+    50% {
+        color: #ffea76;
+        opacity: 1;
+        text-shadow: 0 0 12px rgba(255, 215, 0, .35);
+    }
 }
 /*#endregion DOCUMENT*/
 
