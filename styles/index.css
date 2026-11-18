@@ -1103,9 +1103,14 @@ main.production.about-view #heroElement {
             font-family: "Manrope", "DM Sans", sans-serif;
             font-weight: 700;
         }
-        .appSwitcherNameKnowdium {
-            font-family: "Honk", system-ui, sans-serif;
-            font-size: 1.65rem;
+        .appSwitcherKnowdiumWordmark {
+            display: block;
+            flex: 0 0 112px;
+            width: 112px;
+            max-width: 100%;
+            margin-left: -6px;
+            height: auto;
+            object-fit: contain;
         }
     }
     #headerTabsetContainer {

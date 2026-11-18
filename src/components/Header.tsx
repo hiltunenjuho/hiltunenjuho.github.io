@@ -180,7 +180,7 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
           >
             <img className="appSwitcherLogo" src="/assets/images/logo.svg" alt="" />
             <span className="appSwitcherName appSwitcherNamePortfolio">
-              {isFinnish ? "Portfolio" : "Portfolio"}
+              {isFinnish ? "Portfolio Website" : "Portfolio Website"}
             </span>
           </a>
           <a
@@ -203,7 +203,11 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
               src="/assets/images/knowdium-logo.svg"
               alt=""
             />
-            <span className="appSwitcherName appSwitcherNameKnowdium">knowdium!</span>
+            <img
+              className="appSwitcherKnowdiumWordmark"
+              src="/assets/images/Honk-styled-text-transparent-1x-319x81px.png"
+              alt="knowdium!"
+            />
           </a>
         </nav>
         <div id="headerTabsetContainer">
