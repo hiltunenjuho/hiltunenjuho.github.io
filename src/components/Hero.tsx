@@ -55,7 +55,7 @@ export function Hero({ onNavigate, exitMinHeight, onLayoutTransitionEnd }: HeroP
       onTransitionEnd={onLayoutTransitionEnd}
     >
       <div className="heroInnerContainer" id="heroContainer">
-        <h1 className="heroName">
+        <h1 className="heroName" id="homePageTitle" tabIndex={-1}>
           <span className="namePart" id="firstName">
             JUHO <span id="middleName">M.</span>
           </span>

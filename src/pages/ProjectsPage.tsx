@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { CardCarousel } from "../components/CardCarousel";
 import { TechBadge } from "../components/TechBadge";
+import type { Technology } from "../components/TechBadge";
 import { useSitePreferences } from "../sitePreferences";
 
 interface ProjectLink {
@@ -11,7 +12,7 @@ interface ProjectLink {
 
 type TechnologyCategory = "frontend" | "backend" | "other";
 
-type ProjectTechnologies = Record<TechnologyCategory, string[]>;
+type ProjectTechnologies = Record<TechnologyCategory, Technology[]>;
 
 interface ProjectCardProps {
   title: string;
@@ -159,7 +160,9 @@ export function ProjectsPage() {
 
   return (
     <>
-      <h1 className="sectionTitle">{isFinnish ? "Projektit" : "Projects"}</h1>
+      <h1 className="sectionTitle" id="projectsPageTitle" tabIndex={-1}>
+        {isFinnish ? "Projektit" : "Projects"}
+      </h1>
       <CardCarousel
         id="projectsCarousel"
         label={isFinnish ? "Projektien esittelykortit" : "Project intro cards"}

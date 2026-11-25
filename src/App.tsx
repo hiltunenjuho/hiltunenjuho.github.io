@@ -12,8 +12,26 @@ import type { Locale } from "./sitePreferences";
 import { pageIds } from "./types";
 import type { PageId } from "./types";
 
+const pageHashes: Record<PageId, string> = {
+  home: "",
+  about: "#about",
+  projects: "#projects",
+  contact: "#contact",
+};
+
+const pageHeadingIds: Record<PageId, string> = {
+  home: "homePageTitle",
+  about: "aboutPageTitle",
+  projects: "projectsPageTitle",
+  contact: "contactPageTitle",
+};
+
+function getPageFromHash(hash: string): PageId {
+  return pageIds.find((page) => pageHashes[page] === hash) ?? "home";
+}
+
 function getInitialPage(): PageId {
-  return window.location.hash === "#contact" ? "contact" : "home";
+  return getPageFromHash(window.location.hash);
 }
 
 function getInitialLocale(): Locale {
@@ -30,16 +48,19 @@ export default function App() {
   const [stageHeight, setStageHeight] = useState(0);
   const pageElements = useRef<Partial<Record<PageId, HTMLElement>>>({});
   const homeLayoutTransitions = useRef({ stage: false, hero: false });
+  const focusPageHeading = useRef(false);
+  const activePageRef = useRef(activePage);
+  activePageRef.current = activePage;
   const activeIndex = pageIds.indexOf(activePage);
 
   useLayoutEffect(() => {
     const isFinnish = locale === "fi";
     const title = isFinnish
-      ? "Juho Hiltunen | Ohjelmistokehittäjä"
-      : "Juho Hiltunen | Software Developer";
+      ? "Juho Hiltunen | Full Stack Developer"
+      : "Juho Hiltunen | Full Stack Developer";
     const description = isFinnish
-      ? "Rakennan käytännönläheisiä ohjelmistoja, automaatioita ja integraatioita, jotka helpottavat arjen työtä. Tutustu projekteihini ja ota yhteyttä."
-      : "I build practical software, automations, and integrations that make everyday work easier. Explore my projects and get in touch.";
+      ? "Rakennan laadukkaita ohjelmistoja, sovelluksia, automaatioita ja integraatioita. Tutustu projekteihini ja ota yhteyttä."
+      : "I build quality software, apps, automations, and integrations. Explore my projects and get in touch.";
 
     document.documentElement.lang = locale;
     document.documentElement.style.colorScheme = "dark";
@@ -71,14 +92,14 @@ export default function App() {
   }, [locale]);
 
   const navigateToPage = useCallback(
-    (page: PageId) => {
-      if (page === activePage) {
+    (page: PageId, updateHistory = true) => {
+      if (page === activePageRef.current) {
         return;
       }
 
-      if (page === "home" || activePage === "home") {
-        window.scrollTo({ top: 0, behavior: "auto" });
-      }
+      activePageRef.current = page;
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
 
       if (page === "home") {
         setKeepHomeLayout(true);
@@ -86,7 +107,6 @@ export default function App() {
         setHeroExitMinHeight(null);
         homeLayoutTransitions.current = { stage: false, hero: false };
       } else if (activePage === "home") {
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         if (prefersReducedMotion) {
           setKeepHomeLayout(false);
           setHomeLayoutExiting(false);
@@ -109,32 +129,50 @@ export default function App() {
         }
       }
 
-      const nextHash = page === "contact" ? "#contact" : "";
-      if (window.location.hash !== nextHash) {
-        window.history.replaceState(
-          null,
-          "",
-          window.location.pathname + window.location.search + nextHash,
-        );
+      const nextUrl = window.location.pathname + window.location.search + pageHashes[page];
+      if (
+        updateHistory &&
+        window.location.pathname + window.location.search + window.location.hash !== nextUrl
+      ) {
+        window.history.pushState(null, "", nextUrl);
       }
+
+      focusPageHeading.current = true;
       setActivePage(page);
     },
     [activePage],
   );
 
   useEffect(() => {
-    function activateContactFromHash() {
-      if (window.location.hash === "#contact") {
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          setKeepHomeLayout(false);
-        }
-        setActivePage("contact");
-      }
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+
+    return () => {
+      window.history.scrollRestoration = previousScrollRestoration;
+    };
+  }, []);
+
+  useEffect(() => {
+    function activatePageFromHistory() {
+      navigateToPage(getPageFromHash(window.location.hash), false);
     }
 
-    window.addEventListener("hashchange", activateContactFromHash);
-    return () => window.removeEventListener("hashchange", activateContactFromHash);
-  }, []);
+    window.addEventListener("popstate", activatePageFromHistory);
+    window.addEventListener("hashchange", activatePageFromHistory);
+    return () => {
+      window.removeEventListener("popstate", activatePageFromHistory);
+      window.removeEventListener("hashchange", activatePageFromHistory);
+    };
+  }, [navigateToPage]);
+
+  useLayoutEffect(() => {
+    if (!focusPageHeading.current) {
+      return;
+    }
+
+    focusPageHeading.current = false;
+    document.getElementById(pageHeadingIds[activePage])?.focus({ preventScroll: true });
+  }, [activePage]);
 
   function finishHomeLayoutTransition(event: TransitionEvent<HTMLDivElement>) {
     if (

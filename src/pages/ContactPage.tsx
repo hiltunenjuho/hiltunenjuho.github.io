@@ -25,7 +25,9 @@ export function ContactPage() {
   const isFinnish = locale === "fi";
   return (
     <>
-      <h1 className="sectionTitle">{isFinnish ? "Ota yhteyttä" : "Get in touch"}</h1>
+      <h1 className="sectionTitle" id="contactPageTitle" tabIndex={-1}>
+        {isFinnish ? "Ota yhteyttä" : "Get in touch"}
+      </h1>
       <div className="sectionContainer contactCard">
         <h2 className="aboutCardTitle">
           {isFinnish ? "Onko mielessäsi " : "Have an idea or project? "}

@@ -1,6 +1,42 @@
 import { CardCarousel } from "../components/CardCarousel";
 import { TechBadge } from "../components/TechBadge";
+import type { Technology } from "../components/TechBadge";
 import { useSitePreferences } from "../sitePreferences";
+
+type TechStackCategory = "languages" | "frontend" | "backend" | "data" | "testingTools";
+
+const techStackCategoryLabels: Record<TechStackCategory, { fi: string; en: string }> = {
+  languages: { fi: "Ohjelmointikielet", en: "Languages" },
+  frontend: { fi: "Frontend ja mobiili", en: "Frontend and mobile" },
+  backend: { fi: "Backend ja rajapinnat", en: "Backend and APIs" },
+  data: { fi: "Data ja tietokannat", en: "Data and databases" },
+  testingTools: { fi: "Testaus ja työkalut", en: "Testing and tools" },
+};
+
+const techStackCategories: Record<TechStackCategory, Technology[]> = {
+  languages: ["JavaScript", "TypeScript", "Python", "C#", "Swift", "SQL"],
+  frontend: [
+    "React",
+    "Vite",
+    "HTML",
+    "CSS",
+    "Tailwind CSS",
+    "PWA",
+    "React Router",
+    "SwiftUI",
+    "TanStack Query",
+  ],
+  backend: [
+    ".NET",
+    "ASP.NET Core",
+    "Node.js",
+    "Google OAuth 2.0",
+    "OpenAPI",
+    "REST APIs",
+  ],
+  data: ["Entity Framework Core", "PostgreSQL"],
+  testingTools: ["Docker", "Git", "GitHub", "Wrangler", "xUnit"],
+};
 
 export function AboutPage() {
   const { locale } = useSitePreferences();
@@ -17,7 +53,7 @@ export function AboutPage() {
             dataa käsitteleviä toimintoja.
           </p>
           <p>
-            React, TypeScript, Node.js ja tietokannat ovat osa työkalupakkiani.
+            Tavoitteeni on jatkuvasti syventää osaamistani ja työkalupakkiani. Nautin kunnon haasteesta, joka mahdollistaa samalla erittäin nopean oppimiskykyni.
           </p>
         </>,
         <>
@@ -71,7 +107,7 @@ export function AboutPage() {
             workflows.
           </p>
           <p>
-            React, TypeScript, Node.js, and databases are part of my toolkit.
+            My goal is to constantly deepen my skillset and toolkit. I love a good challenge, which also enables me to learn incredibly fast.
           </p>
         </>,
         <>
@@ -118,7 +154,61 @@ export function AboutPage() {
 
   return (
     <>
-      <h1 className="sectionTitle">{isFinnish ? "Minusta" : "About me"}</h1>
+      <h1 className="sectionTitle" id="aboutPageTitle" tabIndex={-1}>
+        {isFinnish ? "Minusta" : "About me"}
+      </h1>
+      <section className="aboutIntro" aria-label={isFinnish ? "Esittely" : "Introduction"}>
+        <div className="aboutIntroPortraitFrame">
+          <img
+            src="/assets/images/profilephoto-fullsize-png.png"
+            alt="Juho M. Hiltunen"
+            width="320"
+            height="320"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div className="aboutIntroCopy">
+          <h2 className="aboutIntroName">Juho Hiltunen</h2>
+          <p className="aboutIntroEyebrow">SOFTWARE DEVELOPER</p>
+          <blockquote className="aboutIntroQuote">
+            {isFinnish ? (
+              <>
+                <p>
+                  Olen full stack -kehittäjä ja rakennan ohjelmistoja, automaatioita, integraatioita
+                  ja sovelluksia.
+                </p>
+                <p>
+                  Periksiantamaton asenteeni, nopea oppimis- ja sopeutumiskykyni sekä vahva
+                  sotilas- ja myyntitaustani tekevät minusta potentiaalisen ja toimeen tarttuvan
+                  tekijän teknologia-alalle.
+                </p>
+                <p>
+                  Tuon mukanani korkeat laatustandardit, vahvan työmoraalin ja vuorovaikutustaidot,
+                  joilla ideat muuttuvat tuloksiksi.
+                </p>
+                <p>Tervetuloa portfoliooni!</p>
+              </>
+            ) : (
+              <>
+                <p>
+                  I'm a full-stack developer building software, automations, integrations, and apps.
+                </p>
+                <p>
+                  My never-quit mindset, ability to learn and adapt fast, and strong military and
+                  sales background make me a high-potential, action-oriented contributor in tech.
+                </p>
+                <p>
+                  I bring high standards, a strong work ethic, and the people skills to turn ideas
+                  into results.
+                </p>
+                <p>Welcome to my portfolio!</p>
+              </>
+            )}
+            <footer>— J.H.</footer>
+          </blockquote>
+        </div>
+      </section>
       <CardCarousel
         id="aboutCarousel"
         label={isFinnish ? "Minusta kertovat kortit" : "About me cards"}
@@ -131,38 +221,30 @@ export function AboutPage() {
             ? "Käytännön työkaluni web-kehitykseen, integraatioihin, automaatioon ja AI-ratkaisuihin."
             : "My hands-on toolkit for web development, integrations, automation, and applied AI."}
         </p>
-        <ul className="techBadgeList" aria-label="Tech Stack">
-          {[
-            "React",
-            "TypeScript",
-            "JavaScript",
-            "Node.js",
-            "Python",
-            "SQL",
-            "PostgreSQL",
-            "Docker",
-            "LLM integrations",
-            "REST APIs",
-            "Swift",
-            "SwiftUI",
-            "HTML",
-            "CSS",
-            "CI/CD",
-            "Vite",
-            "Git",
-            "GitHub",
-            "npm",
-            "JSON",
-            "Web APIs",
-            "Browser extensions",
-            "AI-assisted development",
-            "Agentic development",
-          ].map((technology) => (
-            <li key={technology}>
-              <TechBadge technology={technology} />
-            </li>
+        <h3 className="techStackSubtitle">
+          {isFinnish ? "Nykyinen stack" : "Current stack"}
+        </h3>
+        <div className="techStackGroups">
+          {(Object.keys(techStackCategoryLabels) as TechStackCategory[]).map((category) => (
+            <section className="techStackGroup" key={category}>
+              <h4>{isFinnish ? techStackCategoryLabels[category].fi : techStackCategoryLabels[category].en}</h4>
+              <ul
+                className="techBadgeList"
+                aria-label={
+                  isFinnish
+                    ? `${techStackCategoryLabels[category].fi}-teknologiat`
+                    : `${techStackCategoryLabels[category].en} technologies`
+                }
+              >
+                {techStackCategories[category].map((technology) => (
+                  <li key={technology}>
+                    <TechBadge technology={technology} />
+                  </li>
+                ))}
+              </ul>
+            </section>
           ))}
-        </ul>
+        </div>
       </section>
       <a
         className="aboutCvDownload"
